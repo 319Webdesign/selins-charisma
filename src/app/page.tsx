@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero – Titel zentriert, hier später Film/Video volle Breite */}
-      <section className="min-h-[70vh] flex flex-col justify-center pt-32 pb-28 px-6 lg:px-8">
+      <section className="min-h-[70vh] flex flex-col justify-center pt-44 pb-28 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto w-full text-center">
           <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white font-medium tracking-tight mb-6">
             Selin&apos;s Charisma
