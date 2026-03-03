@@ -10,7 +10,7 @@ import {
 export default function BeratungHypnosePage() {
   return (
     <>
-      <section className="pt-28 pb-24 px-6 lg:px-8 bg-apple-light text-apple-dark">
+      <section className="pt-40 pb-24 px-6 lg:px-8 bg-apple-light text-apple-dark">
         <div className="max-w-3xl mx-auto">
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-center font-medium tracking-tight mb-6 text-apple-dark">
             Beratung & Hypnose
