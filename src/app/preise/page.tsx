@@ -1,6 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+import { Phone } from "lucide-react";
+import { motion } from "framer-motion";
+import FadeInUp from "@/components/FadeInUp";
 
 type PreisItem = { name: string; preis: string; detail?: string };
 
@@ -58,8 +62,22 @@ const TABS: { key: TabKey; label: string }[] = [
   { key: "kosmetik", label: "Kosmetik" },
 ];
 
-export default function PreisePage() {
-  const [activeTab, setActiveTab] = useState<TabKey>("damen");
+const VALID_TABS: TabKey[] = ["damen", "herren", "kinder", "kosmetik"];
+
+function getTabFromUrl(searchParams: URLSearchParams | null): TabKey {
+  const tab = searchParams?.get("tab");
+  return tab && VALID_TABS.includes(tab as TabKey) ? (tab as TabKey) : "damen";
+}
+
+function PreiseContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const activeTab = getTabFromUrl(searchParams);
+
+  const handleTabClick = (key: TabKey) => {
+    router.replace(`/preise?tab=${key}`, { scroll: false });
+  };
+
   const { items, subtitle } = PREISE[activeTab];
 
   return (
@@ -77,7 +95,7 @@ export default function PreisePage() {
           {TABS.map(({ key, label }) => (
             <button
               key={key}
-              onClick={() => setActiveTab(key)}
+              onClick={() => handleTabClick(key)}
               className={`px-6 py-3 rounded-2xl text-sm font-medium transition-all duration-500 ease-in-out ${
                 activeTab === key
                   ? "bg-white/10 text-gold border border-gold/50"
@@ -96,12 +114,17 @@ export default function PreisePage() {
           </p>
         )}
 
-        {/* Preisliste – Speisekarten-Style */}
-        <div className="max-w-2xl mx-auto bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12">
+        {/* Preisliste – Bento-Box */}
+        <FadeInUp>
+        <div className="max-w-2xl mx-auto bg-bento border border-white/5 rounded-3xl p-8 md:p-12">
           <ul className="space-y-0">
-            {items.map((item) => (
-              <li
+            {items.map((item, idx) => (
+              <motion.li
                 key={item.name}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.5, delay: idx * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="flex justify-between items-baseline gap-4 py-5 border-b border-gold/20 last:border-0"
               >
                 <div className="min-w-0">
@@ -113,15 +136,49 @@ export default function PreisePage() {
                 <span className="text-gold text-sm font-medium tabular-nums flex-shrink-0">
                   {item.preis}
                 </span>
-              </li>
+              </motion.li>
             ))}
           </ul>
         </div>
+        </FadeInUp>
 
         <p className="text-white/50 text-sm text-center mt-12 max-w-md mx-auto">
           Preise verstehen sich als Richtwerte. Genaue Kosten erfahren Sie bei der Beratung.
         </p>
+
+        {/* CTA – Termin per Telefon (Bento-Box) */}
+        <FadeInUp delay={0.2}>
+        <div className="mt-20 max-w-2xl mx-auto text-center">
+          <div className="rounded-3xl border border-white/5 bg-bento p-8 md:p-12">
+            <h2 className="font-serif text-2xl md:text-3xl text-white font-medium mb-3">
+              Termin vereinbaren
+            </h2>
+            <p className="text-white/70 mb-8 max-w-md mx-auto">
+              Rufen Sie uns gerne an – wir beraten Sie persönlich und finden gemeinsam den passenden Termin für Sie.
+            </p>
+            <a
+              href="tel:+496201871966"
+              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-gold/20 border border-gold/60 text-gold font-medium hover:bg-gold/30 transition-all duration-500 ease-in-out"
+            >
+              <Phone className="w-5 h-5" strokeWidth={1.5} />
+              Jetzt anrufen
+            </a>
+          </div>
+        </div>
+        </FadeInUp>
       </div>
     </div>
+  );
+}
+
+export default function PreisePage() {
+  return (
+    <Suspense fallback={
+      <div className="pt-40 pb-24 px-6 lg:px-8 min-h-[50vh] flex items-center justify-center">
+        <div className="animate-pulse text-white/50">Lädt…</div>
+      </div>
+    }>
+      <PreiseContent />
+    </Suspense>
   );
 }

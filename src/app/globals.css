@@ -8,7 +8,28 @@
     --gold: #D4AF37;
     --apple-light: #f5f5f7;
     --cream: #f9f9f9;
+    --anthracite: #0a0a0a;
+    --bento-bg: #1c1c1e;
   }
+}
+
+/* Mesh-Gradient Hintergrund – Apple-Style */
+.bg-mesh-anthracite {
+  background-color: #0a0a0a;
+  background-image:
+    radial-gradient(
+      ellipse 100vmax 80vmax at 5% 10%,
+      rgba(212, 175, 55, 0.18) 0%,
+      rgba(212, 175, 55, 0.06) 30%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 90vmax 70vmax at 95% 90%,
+      rgba(212, 175, 55, 0.14) 0%,
+      rgba(212, 175, 55, 0.04) 35%,
+      transparent 60%
+    );
+  background-attachment: fixed;
 }
 
 /* Custom scrollbar – Apple-style */
@@ -18,7 +39,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: #0a0a0a;
 }
 
 ::-webkit-scrollbar-thumb {

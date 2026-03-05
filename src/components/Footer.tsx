@@ -7,7 +7,7 @@ const INSTAGRAM_URL = "https://instagram.com";
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-white/10">
+    <footer className="bg-anthracite border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10">
           <div>

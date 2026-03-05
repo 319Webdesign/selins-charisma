@@ -5,6 +5,16 @@ import ReviewsSection from "@/components/ReviewsSection";
 import { Instagram, Phone, Star } from "lucide-react";
 
 const SALON_IMAGE = "/img/salon-interior.png";
+const GALLERY_IMAGES = [
+  { src: "/img/gallery-1.png", alt: "Selin's Charisma – Salonansicht" },
+  { src: "/img/gallery-2.png", alt: "Selin's Charisma – Styling-Stationen" },
+  { src: "/img/gallery-3.png", alt: "Selin's Charisma – Waschplätze" },
+  { src: "/img/gallery-4.png", alt: "Selin's Charisma – Salon-Innenansicht" },
+  { src: "/img/gallery-5.png", alt: "Selin's Charisma – Arbeitsbereiche" },
+];
+const LEISTUNGEN_DAMEN_IMAGE = "/img/leistungen-damen.png";
+const LEISTUNGEN_HERREN_IMAGE = "/img/leistungen-herren.png";
+const LEISTUNGEN_KOSMETIK_IMAGE = "/img/leistungen-kosmetik.png";
 
 export default function HomePage() {
   return (
@@ -65,16 +75,21 @@ export default function HomePage() {
                 title: "Damen",
                 desc: "Schnitt, Färbung, Balayage – für Ihren einzigartigen Look.",
                 label: "Media Shooting in 1 Woche – Damen",
+                image: LEISTUNGEN_DAMEN_IMAGE,
               },
               {
                 title: "Herren",
                 desc: "Klassischer Schnitt oder moderner Stil – professionell und gepflegt.",
                 label: "Media Shooting in 1 Woche – Herren",
+                image: LEISTUNGEN_HERREN_IMAGE,
+                preiseTab: "herren",
               },
               {
                 title: "Kosmetik",
                 desc: "Hautpflege, Make-up und Wellness – für Ihr strahlendes Ich.",
                 label: "Media Shooting in 1 Woche – Kosmetik",
+                image: LEISTUNGEN_KOSMETIK_IMAGE,
+                preiseTab: "kosmetik",
               },
             ].map((item) => (
               <article
@@ -83,7 +98,7 @@ export default function HomePage() {
               >
                 <div className="aspect-[4/5] overflow-hidden rounded-t-3xl relative">
                   <Image
-                    src={SALON_IMAGE}
+                    src={item.image}
                     alt={item.title}
                     fill
                     className="object-cover rounded-t-3xl"
@@ -97,7 +112,10 @@ export default function HomePage() {
                   <p className="text-white/60 text-sm leading-relaxed mb-6">
                     {item.desc}
                   </p>
-                  <GoldButton href="/preise" variant="outline">
+                  <GoldButton
+                    href={item.preiseTab ? `/preise?tab=${item.preiseTab}` : "/preise"}
+                    variant="outline"
+                  >
                     Mehr erfahren
                   </GoldButton>
                 </div>
@@ -107,42 +125,99 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Instagram */}
+      {/* Galerie – Salon in Szene */}
       <section className="py-24 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="font-serif text-3xl md:text-4xl text-white text-center mb-4 font-medium">
-            Folgen Sie uns
+            Unser Salon
           </h2>
-          <p className="text-white/60 text-center mb-12 max-w-xl mx-auto">
-            Bleiben Sie auf dem Laufenden mit unseren neuesten Styles.
+          <p className="text-white/60 text-center mb-16 max-w-xl mx-auto">
+            Entdecken Sie die Atmosphäre von Selin&apos;s Charisma
           </p>
-          <div className="flex gap-4 overflow-x-auto pb-4 -mx-2 scrollbar-thin">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div
-                key={i}
-                className="flex-shrink-0 w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden relative"
-              >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[160px] md:auto-rows-[200px]">
+            <div className="col-span-2 row-span-2 rounded-2xl overflow-hidden relative group">
+              <Image
+                src={GALLERY_IMAGES[0].src}
+                alt={GALLERY_IMAGES[0].alt}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="rounded-2xl overflow-hidden relative group">
+              <Image
+                src={GALLERY_IMAGES[1].src}
+                alt={GALLERY_IMAGES[1].alt}
+                fill
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
+            </div>
+            <div className="rounded-2xl overflow-hidden relative group">
+              <Image
+                src={GALLERY_IMAGES[2].src}
+                alt={GALLERY_IMAGES[2].alt}
+                fill
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
+            </div>
+            <div className="rounded-2xl overflow-hidden relative group">
+              <Image
+                src={GALLERY_IMAGES[3].src}
+                alt={GALLERY_IMAGES[3].alt}
+                fill
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
+            </div>
+            <div className="rounded-2xl overflow-hidden relative group">
+              <Image
+                src={GALLERY_IMAGES[4].src}
+                alt={GALLERY_IMAGES[4].alt}
+                fill
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Instagram CTA */}
+      <section className="py-24 px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block rounded-3xl overflow-hidden bg-white/5 border border-white/10 hover:border-gold/40 transition-all duration-500 ease-in-out"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[320px]">
+              <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[320px] overflow-hidden">
                 <Image
                   src={SALON_IMAGE}
-                  alt="Selin's Charisma"
+                  alt="Selin's Charisma – Einblicke auf Instagram"
                   fill
-                  className="object-cover rounded-2xl"
-                  sizes="224px"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent lg:from-black/40" />
               </div>
-            ))}
-          </div>
-          <div className="flex justify-center mt-10">
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium border border-white/30 text-white rounded-2xl hover:border-gold/50 hover:text-gold transition-all duration-500 ease-in-out"
-            >
-              <Instagram className="w-5 h-5" strokeWidth={1.5} />
-              Folge uns
-            </a>
-          </div>
+              <div className="flex flex-col justify-center p-8 md:p-12 text-center lg:text-left">
+                <h2 className="font-serif text-2xl md:text-3xl text-white font-medium mb-3">
+                  Folgen Sie uns auf Instagram
+                </h2>
+                <p className="text-white/70 mb-8 max-w-md">
+                  Inspiration, neueste Looks und Einblicke hinter die Kulissen – bleiben Sie auf dem Laufenden.
+                </p>
+                <span className="inline-flex items-center justify-center lg:justify-start gap-2 text-gold font-medium group-hover:gap-3 transition-all duration-300">
+                  <Instagram className="w-5 h-5" strokeWidth={1.5} />
+                  Zu Instagram
+                </span>
+              </div>
+            </div>
+          </a>
         </div>
       </section>
 

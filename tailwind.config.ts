@@ -12,6 +12,8 @@ const config: Config = {
         black: "#000000",
         "apple-dark": "#1a1a1a",
         "apple-light": "#f5f5f7",
+        anthracite: "#0a0a0a",
+        bento: "#1c1c1e",
         gold: "#D4AF37",
         charcoal: "#1a1a1a",
         cream: "#f9f9f9",

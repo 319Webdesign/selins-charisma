@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingCallButton from "@/components/FloatingCallButton";
+import BackgroundEffects from "@/components/BackgroundEffects";
+import MouseGlowEffect from "@/components/MouseGlowEffect";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -27,7 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="bg-apple-dark text-white font-sans antialiased min-h-screen flex flex-col">
+      <body className="bg-mesh-anthracite text-white font-sans antialiased min-h-screen flex flex-col relative">
+        <BackgroundEffects />
+        <MouseGlowEffect />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
