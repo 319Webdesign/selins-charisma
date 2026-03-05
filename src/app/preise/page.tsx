@@ -83,7 +83,7 @@ function PreiseContent() {
   return (
     <div className="pt-40 pb-24 px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white text-center font-medium tracking-tight mb-4">
+        <h1 className="font-serif text-5xl md:text-5xl lg:text-6xl text-white text-center font-medium tracking-tight mb-4">
           Preise
         </h1>
         <p className="text-white/60 text-center mb-16 max-w-xl mx-auto">
@@ -150,7 +150,7 @@ function PreiseContent() {
         <FadeInUp delay={0.2}>
         <div className="mt-20 max-w-2xl mx-auto text-center">
           <div className="rounded-3xl border border-white/5 bg-bento p-8 md:p-12">
-            <h2 className="font-serif text-2xl md:text-3xl text-white font-medium mb-3">
+            <h2 className="font-serif text-3xl md:text-3xl text-white font-medium mb-3">
               Termin vereinbaren
             </h2>
             <p className="text-white/70 mb-8 max-w-md mx-auto">

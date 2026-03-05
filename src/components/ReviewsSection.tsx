@@ -53,7 +53,7 @@ export default function ReviewsSection() {
   return (
     <section className="py-24 px-6 lg:px-8 border-t border-white/10">
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-serif text-3xl md:text-4xl text-white text-center font-medium mb-4">
+        <h2 className="font-serif text-4xl md:text-4xl text-white text-center font-medium mb-4">
           Das sagen unsere Gäste
         </h2>
         <p className="text-white/60 text-center mb-16 max-w-xl mx-auto">

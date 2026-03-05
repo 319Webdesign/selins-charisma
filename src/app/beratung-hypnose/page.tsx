@@ -12,7 +12,7 @@ export default function BeratungHypnosePage() {
     <>
       <section className="pt-40 pb-24 px-6 lg:px-8 bg-apple-light text-apple-dark">
         <div className="max-w-3xl mx-auto">
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-center font-medium tracking-tight mb-6 text-apple-dark">
+          <h1 className="font-serif text-5xl md:text-5xl lg:text-6xl text-center font-medium tracking-tight mb-6 text-apple-dark">
             Beratung & Hypnose
           </h1>
           <p className="text-center text-apple-dark/80 text-lg mb-16 max-w-2xl mx-auto leading-relaxed">
@@ -35,7 +35,7 @@ export default function BeratungHypnosePage() {
                 <MessageCircle className="w-6 h-6 text-gold" strokeWidth={1.5} />
               </div>
               <div>
-                <h2 className="font-serif text-2xl md:text-3xl text-apple-dark font-medium mb-4">
+                <h2 className="font-serif text-3xl md:text-3xl text-apple-dark font-medium mb-4">
                   Planung & Beratung
                 </h2>
                 <p className="text-apple-dark/80 leading-relaxed mb-4">
@@ -56,7 +56,7 @@ export default function BeratungHypnosePage() {
                 <Sparkles className="w-6 h-6 text-gold" strokeWidth={1.5} />
               </div>
               <div>
-                <h2 className="font-serif text-2xl md:text-3xl text-apple-dark font-medium mb-4">
+                <h2 className="font-serif text-3xl md:text-3xl text-apple-dark font-medium mb-4">
                   Hypnose & Entspannung
                 </h2>
                 <p className="text-apple-dark/80 leading-relaxed">
@@ -72,7 +72,7 @@ export default function BeratungHypnosePage() {
                 <Heart className="w-6 h-6 text-gold" strokeWidth={1.5} />
               </div>
               <div>
-                <h2 className="font-serif text-2xl md:text-3xl text-apple-dark font-medium mb-4">
+                <h2 className="font-serif text-3xl md:text-3xl text-apple-dark font-medium mb-4">
                   Ihr Wohlbefinden im Fokus
                 </h2>
                 <p className="text-apple-dark/80 leading-relaxed">
@@ -101,7 +101,7 @@ export default function BeratungHypnosePage() {
       {/* Dunkler Abschluss */}
       <section className="py-20 px-6 bg-apple-dark text-white">
         <div className="max-w-7xl mx-auto max-w-2xl text-center">
-          <h2 className="font-serif text-2xl text-white font-medium mb-4">
+          <h2 className="font-serif text-3xl text-white font-medium mb-4">
             Selin&apos;s Charisma
           </h2>
           <p className="text-white/70 mb-8">

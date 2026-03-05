@@ -51,7 +51,7 @@ export default function ContactSection() {
   return (
     <section id="kontakt" className="py-24 px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-serif text-3xl md:text-4xl text-white text-center font-medium mb-16">
+        <h2 className="font-serif text-4xl md:text-4xl text-white text-center font-medium mb-16">
           Kontakt & Anfahrt
         </h2>
 
@@ -59,7 +59,7 @@ export default function ContactSection() {
           {/* Bento: Öffnungszeiten & Kontakt */}
           <div className="rounded-3xl bg-bento border border-white/5 p-8 md:p-10 flex flex-col justify-center space-y-8">
             <div>
-              <h3 className="font-serif text-xl text-white mb-4 flex flex-wrap items-center gap-3">
+              <h3 className="font-serif text-2xl md:text-xl text-white mb-4 flex flex-wrap items-center gap-3">
                 <Clock className="w-5 h-5 text-gold" strokeWidth={1.5} />
                 Öffnungszeiten
                 <span
@@ -90,7 +90,7 @@ export default function ContactSection() {
               </ul>
             </div>
             <div>
-              <h3 className="font-serif text-xl text-white mb-4 flex items-center gap-2">
+              <h3 className="font-serif text-2xl md:text-xl text-white mb-4 flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-gold" strokeWidth={1.5} />
                 Adresse
               </h3>

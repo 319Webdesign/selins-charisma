@@ -4,12 +4,18 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 /**
  * Grainy Overlay – SVG-Filter mit 2% Opazität über #0a0a0a
- * Parallax Blur Objects – Gold und Creme, bewegen sich beim Scrollen
+ * Parallax Blur Objects – Gold und Creme, dynamische Bewegung beim Scrollen + dezente Float-Animation
  */
 export default function BackgroundEffects() {
   const { scrollY } = useScroll();
-  const goldY = useTransform(scrollY, [0, 2000], [0, 200]);
-  const creamY = useTransform(scrollY, [0, 2000], [0, -150]);
+
+  // Gold: vertikal + horizontal Parallax, stärkere Bewegung
+  const goldY = useTransform(scrollY, [0, 1500, 3000], [0, 120, 280]);
+  const goldX = useTransform(scrollY, [0, 1500, 3000], [0, 80, 150]);
+
+  // Creme: gegenläufig für Tiefe
+  const creamY = useTransform(scrollY, [0, 1500, 3000], [0, -100, -220]);
+  const creamX = useTransform(scrollY, [0, 1500, 3000], [0, -60, -120]);
 
   return (
     <>
@@ -31,12 +37,13 @@ export default function BackgroundEffects() {
         </svg>
       </div>
 
-      {/* Parallax Blur Objects */}
+      {/* Parallax Blur Objects – Gold + Creme mit X/Y-Parallax beim Scrollen */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none -z-[1]" aria-hidden>
         <motion.div
           className="absolute w-[80vmax] h-[80vmax] rounded-full blur-[120px] -left-[30vmax] -top-[20vmax]"
           style={{
-            background: "radial-gradient(circle, rgba(212,175,55,0.25) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%)",
+            x: goldX,
             y: goldY,
           }}
         />
@@ -44,6 +51,7 @@ export default function BackgroundEffects() {
           className="absolute w-[70vmax] h-[70vmax] rounded-full blur-[100px] -right-[25vmax] top-[30%]"
           style={{
             background: "radial-gradient(circle, rgba(249,249,249,0.12) 0%, transparent 70%)",
+            x: creamX,
             y: creamY,
           }}
         />
