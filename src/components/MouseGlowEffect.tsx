@@ -44,7 +44,7 @@ export default function MouseGlowEffect() {
           left: position.x,
           top: position.y,
           background:
-            "radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0.03) 30%, transparent 60%)",
+            "radial-gradient(circle, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 30%, transparent 60%)",
         }}
       />
     </div>

@@ -13,20 +13,20 @@
   }
 }
 
-/* Mesh-Gradient Hintergrund – Apple-Style */
+/* Mesh-Gradient Hintergrund – Apple-Style (neutral, ohne Gold) */
 .bg-mesh-anthracite {
   background-color: #0a0a0a;
   background-image:
     radial-gradient(
       ellipse 100vmax 80vmax at 5% 10%,
-      rgba(212, 175, 55, 0.18) 0%,
-      rgba(212, 175, 55, 0.06) 30%,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.02) 30%,
       transparent 60%
     ),
     radial-gradient(
       ellipse 90vmax 70vmax at 95% 90%,
-      rgba(212, 175, 55, 0.14) 0%,
-      rgba(212, 175, 55, 0.04) 35%,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.015) 35%,
       transparent 60%
     );
   background-attachment: fixed;
@@ -43,10 +43,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(212, 175, 55, 0.4);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 175, 55, 0.6);
+  background: rgba(255, 255, 255, 0.4);
 }
