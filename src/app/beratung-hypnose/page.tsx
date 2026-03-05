@@ -16,13 +16,13 @@ export default function BeratungHypnosePage() {
   return (
     <div className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f]">
       {/* Hero */}
-      <section className="pt-36 pb-20 px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="pt-36 pb-36 lg:pb-48 px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight mb-6 text-[#1d1d1f] leading-tight"
+            className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight mb-6 text-[#1d1d1f] leading-tight text-center"
           >
             Beratung & Hypnose
           </motion.h1>
@@ -30,58 +30,69 @@ export default function BeratungHypnosePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-lg md:text-xl text-[#1d1d1f]/70 max-w-2xl mx-auto mb-16 leading-relaxed"
+            className="text-lg md:text-xl text-[#1d1d1f]/70 max-w-2xl mx-auto mb-32 lg:mb-40 leading-relaxed text-center"
           >
             Professionelle Beratung und Hypnose für Ihr Wohlbefinden – in vertrauensvoller Atmosphäre.
           </motion.p>
 
-          {/* Video – Selin erklärt ihre Reise (Hochformat) */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-center"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center"
           >
-            <div className="relative rounded-[20px] overflow-hidden aspect-[9/16] w-full max-w-[320px] bg-[#e8e8ed]">
-              <video
-                src="/video/hypnose.MP4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                controls
-                className="absolute inset-0 w-full h-full object-cover"
-              >
-                Ihr Browser unterstützt das Video-Format nicht.
-              </video>
+            {/* Links: Text */}
+            <div className="flex flex-col justify-center space-y-6 text-[#1d1d1f]/80 text-lg leading-relaxed order-2 lg:order-1">
+              <p>
+                Mein Name ist Yasemin und ich begleite Menschen als Berater mit Hypnose auf ihrem Weg zu mehr Wohlbefinden und innerer Balance.
+              </p>
+              <p>
+                Meine Arbeit basiert nicht nur auf Wissen und Ausbildung, sondern auch auf persönlicher Erfahrung. Durch die Arbeit mit Hypnose und mentalen Techniken habe ich selbst einen tiefgreifenden Veränderungsprozess erlebt – und dabei über 30 Kilogramm abgenommen.
+              </p>
+              <p>
+                Diese Erfahrung hat mir gezeigt, wie stark unser Unterbewusstsein unsere Gewohnheiten, unser Essverhalten und unsere Motivation beeinflusst. Genau hier setzt Hypnose an: Sie hilft, innere Blockaden zu lösen, neue Denk- und Verhaltensmuster zu entwickeln und Veränderungen nachhaltig im Alltag zu verankern.
+              </p>
             </div>
-            <p className="mt-3 text-sm text-[#1d1d1f]/60 font-medium">
-              Selin erklärt ihre Reise
-            </p>
+
+            {/* Rechts: Video */}
+            <div className="flex flex-col items-center justify-center order-1 lg:order-2">
+              <div className="relative rounded-[20px] overflow-hidden aspect-[9/16] w-full max-w-[320px] bg-[#e8e8ed]">
+                <video
+                  src="/video/hypnose.MP4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  className="absolute inset-0 w-full h-full object-cover"
+                >
+                  Ihr Browser unterstützt das Video-Format nicht.
+                </video>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Bento-Box Transformation */}
-      <section className="py-20 px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            {...fadeInUp}
-            className="font-serif text-3xl md:text-4xl font-medium text-[#1d1d1f] text-center mb-14"
-          >
-            Transformation erleben
-          </motion.h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5">
+      <section className="pt-12 pb-20 px-6 lg:px-8">
+        <motion.h2
+          {...fadeInUp}
+          className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-[#1d1d1f] text-center mb-14"
+        >
+          Transformation erleben
+        </motion.h2>
+        <div className="max-w-6xl mr-auto ml-0">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-3">
             {/* Linke Box – Vorher/Nachher (groß) */}
-            <motion.div {...fadeInUp} className="md:col-span-8">
-              <div className="rounded-[24px] overflow-hidden aspect-[4/3] md:aspect-auto md:min-h-[420px] relative">
+            <motion.div {...fadeInUp} className="md:col-span-9">
+              <div className="rounded-[24px] overflow-hidden aspect-[4/3] md:aspect-auto md:min-h-[480px] relative">
                 <Image
                   src="/img/vorher-nacher.jpeg"
                   alt="Vorher-Nachher Transformation – 30 kg in 3 Monaten"
                   fill
                   className="object-contain"
-                  sizes="(max-width: 768px) 100vw, 65vw"
+                  sizes="(max-width: 768px) 100vw, 70vw"
                   priority
                 />
               </div>
@@ -90,32 +101,43 @@ export default function BeratungHypnosePage() {
               </p>
             </motion.div>
 
-            {/* Rechte Boxen – Statistiken (klein) */}
-            <div className="md:col-span-4 flex flex-col gap-4 md:gap-5">
+            {/* Rechte Boxen – Statistiken */}
+            <div className="md:col-span-3 flex flex-col gap-6 md:gap-8 md:justify-center">
               <motion.div
                 {...fadeInUp}
-                className="flex-1 rounded-[20px] bg-white shadow-[0_2px_24px_rgba(0,0,0,0.06)] p-6 flex flex-col justify-center border border-[#1d1d1f]/05 min-h-[100px]"
+                className="rounded-[20px] bg-white shadow-[0_2px_24px_rgba(0,0,0,0.06)] px-5 py-2.5 flex flex-col justify-center border border-[#1d1d1f]/05"
               >
-                <span className="text-3xl font-serif font-medium text-gold mb-1">90</span>
+                <span className="text-3xl font-serif font-medium text-gold mb-0.5">90</span>
                 <span className="text-[#1d1d1f]/70 text-sm font-medium">Tage</span>
               </motion.div>
               <motion.div
                 {...fadeInUp}
-                className="flex-1 rounded-[20px] bg-white shadow-[0_2px_24px_rgba(0,0,0,0.06)] p-6 flex flex-col justify-center border border-[#1d1d1f]/05 min-h-[100px]"
+                className="rounded-[20px] bg-white shadow-[0_2px_24px_rgba(0,0,0,0.06)] px-5 py-2.5 flex flex-col justify-center border border-[#1d1d1f]/05"
               >
-                <span className="text-3xl font-serif font-medium text-gold mb-1">-30</span>
+                <span className="text-3xl font-serif font-medium text-gold mb-0.5">-30</span>
                 <span className="text-[#1d1d1f]/70 text-sm font-medium">kg</span>
               </motion.div>
               <motion.div
                 {...fadeInUp}
-                className="flex-1 rounded-[20px] bg-white shadow-[0_2px_24px_rgba(0,0,0,0.06)] p-6 flex flex-col justify-center border border-[#1d1d1f]/05 min-h-[100px]"
+                className="rounded-[20px] bg-white shadow-[0_2px_24px_rgba(0,0,0,0.06)] px-5 py-2.5 flex flex-col justify-center border border-[#1d1d1f]/05"
               >
-                <span className="text-2xl font-serif font-medium text-gold mb-1">100%</span>
+                <span className="text-2xl font-serif font-medium text-gold mb-0.5">100%</span>
                 <span className="text-[#1d1d1f]/70 text-sm font-medium">Mentale Arbeit</span>
               </motion.div>
             </div>
           </div>
         </div>
+        <motion.div
+          {...fadeInUp}
+          className="mt-14 max-w-2xl mx-auto text-center space-y-6 text-[#1d1d1f]/80 text-lg leading-relaxed"
+        >
+          <p>
+            Heute unterstütze ich Menschen dabei, ihre eigenen Ziele zu erreichen – sei es beim Abnehmen, beim Auflösen von inneren Blockaden oder beim Aufbau neuer, gesunder Gewohnheiten.
+          </p>
+          <p>
+            Mir ist besonders wichtig, jeden Menschen individuell zu begleiten, mit Respekt, Verständnis und ohne Druck. Veränderung beginnt im Inneren – und ich freue mich, dich auf diesem Weg zu unterstützen.
+          </p>
+        </motion.div>
       </section>
 
       {/* Methodik – Drei White-Cards */}
