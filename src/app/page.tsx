@@ -22,7 +22,7 @@ export default function HomePage() {
       {/* Hero – Titel zentriert, hier später Film/Video volle Breite */}
       <section className="min-h-[70vh] flex flex-col justify-center pt-44 pb-28 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto w-full text-center">
-          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white font-medium tracking-tight mb-6">
+          <h1 className="font-serif text-6xl md:text-6xl lg:text-7xl xl:text-8xl text-white font-medium tracking-tight mb-6">
             Selin&apos;s Charisma
           </h1>
           <p className="text-white/70 text-lg md:text-xl lg:text-2xl text-center max-w-2xl mx-auto mb-14">
@@ -66,10 +66,10 @@ export default function HomePage() {
       {/* Feature Cards: Damen, Herren, Kosmetik */}
       <section className="py-24 px-6 lg:px-8 bg-black/40">
         <div className="max-w-7xl mx-auto">
-          <h2 className="font-serif text-3xl md:text-4xl text-white text-center mb-16 font-medium">
+          <h2 className="font-serif text-4xl md:text-4xl text-white text-center mb-16 font-medium">
             Unsere Leistungen
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 lg:gap-12">
             {[
               {
                 title: "Damen",
@@ -94,9 +94,9 @@ export default function HomePage() {
             ].map((item) => (
               <article
                 key={item.title}
-                className="group rounded-3xl overflow-hidden bg-white/5 border border-white/10 hover:border-gold/30 transition-all duration-500 ease-in-out"
+                className="group rounded-3xl overflow-hidden bg-white/5 border border-white/10 hover:border-gold/30 transition-all duration-500 ease-in-out max-w-sm md:max-w-none mx-auto md:mx-0"
               >
-                <div className="aspect-[4/5] overflow-hidden rounded-t-3xl relative">
+                <div className="aspect-[4/3] md:aspect-[4/5] overflow-hidden rounded-t-3xl relative">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -105,8 +105,8 @@ export default function HomePage() {
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
-                <div className="p-8">
-                  <h3 className="font-serif text-xl text-white mb-2 font-medium">
+                <div className="p-5 md:p-8">
+                  <h3 className="font-serif text-2xl md:text-xl text-white mb-2 font-medium">
                     {item.title}
                   </h3>
                   <p className="text-white/60 text-sm leading-relaxed mb-6">
@@ -128,7 +128,7 @@ export default function HomePage() {
       {/* Galerie – Salon in Szene */}
       <section className="py-24 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="font-serif text-3xl md:text-4xl text-white text-center mb-4 font-medium">
+          <h2 className="font-serif text-4xl md:text-4xl text-white text-center mb-4 font-medium">
             Unser Salon
           </h2>
           <p className="text-white/60 text-center mb-16 max-w-xl mx-auto">
@@ -205,7 +205,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent lg:from-black/40" />
               </div>
               <div className="flex flex-col justify-center p-8 md:p-12 text-center lg:text-left">
-                <h2 className="font-serif text-2xl md:text-3xl text-white font-medium mb-3">
+                <h2 className="font-serif text-3xl md:text-3xl text-white font-medium mb-3">
                   Folgen Sie uns auf Instagram
                 </h2>
                 <p className="text-white/70 mb-8 max-w-md">
