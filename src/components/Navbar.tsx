@@ -22,12 +22,18 @@ export default function Navbar() {
     { href: "/beratung-hypnose", label: "Beratung & Hypnose" },
   ];
 
+  const isLightPage = pathname === "/beratung-hypnose";
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/5 backdrop-blur-md border-b border-white/10">
+    <header className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-colors duration-300 ${
+      isLightPage ? "bg-[#f5f5f7]/90 border-b border-[#1d1d1f]/10" : "bg-white/5 border-b border-white/10"
+    }`}>
       <nav className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
         <Link
           href="/"
-          className="flex items-center gap-3 text-white hover:opacity-90 transition-all duration-500 ease-in-out"
+          className={`flex items-center gap-3 hover:opacity-90 transition-all duration-500 ease-in-out ${
+            isLightPage ? "text-[#1d1d1f]" : "text-white"
+          }`}
           aria-label="Selin's Charisma – Startseite"
         >
           <Image
@@ -51,7 +57,9 @@ export default function Navbar() {
                   className={`text-sm font-medium tracking-wide transition-all duration-500 ease-in-out relative after:absolute after:bottom-[-4px] after:left-0 after:h-px after:bg-gold after:transition-all duration-500 ${
                     pathname === link.href
                       ? "text-gold after:w-full"
-                      : "text-white/90 hover:text-white after:w-0 hover:after:w-full"
+                      : isLightPage
+                        ? "text-[#1d1d1f]/80 hover:text-[#1d1d1f] after:w-0 hover:after:w-full"
+                        : "text-white/90 hover:text-white after:w-0 hover:after:w-full"
                   }`}
                 >
                   {link.label}
@@ -61,7 +69,9 @@ export default function Navbar() {
           </ul>
           <a
             href="tel:+496201871966"
-            className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-gold/60 text-gold rounded-2xl hover:bg-gold/10 transition-all duration-500 ease-in-out"
+            className={`inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-gold/60 text-gold rounded-2xl transition-all duration-500 ease-in-out ${
+              isLightPage ? "hover:bg-gold/15" : "hover:bg-gold/10"
+            }`}
           >
             <Phone className="w-4 h-4" strokeWidth={1.5} />
             Jetzt anrufen
@@ -69,7 +79,9 @@ export default function Navbar() {
         </div>
 
         <button
-          className="md:hidden p-2 text-white rounded-2xl hover:bg-white/10 transition-all duration-500"
+          className={`md:hidden p-2 rounded-2xl transition-all duration-500 ${
+            isLightPage ? "text-[#1d1d1f] hover:bg-[#1d1d1f]/10" : "text-white hover:bg-white/10"
+          }`}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Menü öffnen"
         >
@@ -78,13 +90,17 @@ export default function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div className="md:hidden bg-apple-dark/95 backdrop-blur-md border-t border-white/10 rounded-b-2xl overflow-hidden">
+        <div className={`md:hidden backdrop-blur-md rounded-b-2xl overflow-hidden ${
+          isLightPage ? "bg-[#f5f5f7]/98 border-t border-[#1d1d1f]/10" : "bg-apple-dark/95 border-t border-white/10"
+        }`}>
           <ul className="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-1">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="block py-3 text-white/90 hover:text-gold transition-all duration-500 rounded-2xl px-4 hover:bg-white/5"
+                  className={`block py-3 transition-all duration-500 rounded-2xl px-4 ${
+                    isLightPage ? "text-[#1d1d1f]/90 hover:text-gold hover:bg-[#1d1d1f]/5" : "text-white/90 hover:text-gold hover:bg-white/5"
+                  }`}
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
