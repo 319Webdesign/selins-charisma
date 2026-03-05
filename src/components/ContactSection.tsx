@@ -8,7 +8,7 @@ const PHONE_LINK = "tel:+496201871966";
 
 const OPENING_HOURS = [
   { days: "Dienstag – Freitag", hours: "09:00 – 18:00 Uhr" },
-  { days: "Samstag", hours: "09:00 – 14:00 Uhr" },
+  { days: "Samstag", hours: "09:00 – 16:00 Uhr" },
   { days: "Montag & Sonntag", hours: "geschlossen" },
 ];
 
@@ -49,7 +49,7 @@ export default function ContactSection() {
   }, []);
 
   return (
-    <section id="kontakt" className="py-24 px-6 lg:px-8 bg-apple-dark">
+    <section id="kontakt" className="py-24 px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="font-serif text-3xl md:text-4xl text-white text-center font-medium mb-16">
           Kontakt & Anfahrt
@@ -57,7 +57,7 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Bento: Öffnungszeiten & Kontakt */}
-          <div className="rounded-3xl bg-white/5 border border-white/10 p-8 md:p-10 flex flex-col justify-center space-y-8">
+          <div className="rounded-3xl bg-bento border border-white/5 p-8 md:p-10 flex flex-col justify-center space-y-8">
             <div>
               <h3 className="font-serif text-xl text-white mb-4 flex flex-wrap items-center gap-3">
                 <Clock className="w-5 h-5 text-gold" strokeWidth={1.5} />
@@ -110,7 +110,7 @@ export default function ContactSection() {
           </div>
 
           {/* Bento: Google Maps mit Graustufen */}
-          <div className="rounded-3xl overflow-hidden border border-white/10 bg-white/5 relative h-[320px] md:h-[380px]">
+          <div className="rounded-3xl overflow-hidden border border-white/5 bg-bento relative h-[320px] md:h-[380px]">
             <iframe
               src={MAP_EMBED_URL}
               width="100%"

@@ -1,4 +1,7 @@
+"use client";
+
 import { Star } from "lucide-react";
+import FadeInUp from "./FadeInUp";
 
 const REVIEWS = [
   {
@@ -59,10 +62,10 @@ export default function ReviewsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {REVIEWS.map((review, i) => (
-            <article
-              key={i}
-              className="rounded-3xl bg-white/5 border border-white/10 p-8 hover:border-gold/20 transition-all duration-500 ease-in-out"
-            >
+            <FadeInUp key={i} delay={i * 0.1}>
+              <article
+                className="rounded-3xl bg-white/5 border border-white/10 p-8 hover:border-gold/20 transition-all duration-500 ease-in-out"
+              >
               <div className="flex justify-between items-start mb-4">
                 <div className="flex gap-0.5">
                   {Array.from({ length: review.rating }).map((_, j) => (
@@ -82,6 +85,7 @@ export default function ReviewsSection() {
               </p>
               <p className="text-gold/90 text-sm font-medium">{review.name}</p>
             </article>
+            </FadeInUp>
           ))}
         </div>
 
