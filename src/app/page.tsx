@@ -125,6 +125,50 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Vorher-Nachher CTA – Beratung & Hypnose */}
+      <section className="py-24 px-6 lg:px-8 bg-[#f5f5f7] text-[#1d1d1f]">
+        <div className="max-w-6xl mx-auto">
+          <a
+            href="/beratung-hypnose"
+            className="group block rounded-[24px] overflow-hidden bg-white shadow-[0_4px_32px_rgba(0,0,0,0.08)] border border-[#1d1d1f]/05 hover:shadow-[0_8px_48px_rgba(0,0,0,0.12)] transition-all duration-500"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[420px]">
+              <div className="relative flex items-center justify-center py-5 lg:py-6 px-4 lg:px-6 bg-[#fafafa]">
+                <div className="relative w-full max-w-[320px] aspect-[3/4] overflow-hidden rounded-2xl">
+                  <Image
+                    src="/img/vorher-nacher.jpeg"
+                    alt="Vorher-Nachher Transformation – 30 kg in 3 Monaten mit Beratung & Hypnose"
+                    fill
+                    className="object-contain group-hover:scale-105 transition-transform duration-700 ease-out"
+                    sizes="(max-width: 1024px) 100vw, 320px"
+                  />
+                </div>
+                <div className="absolute top-6 left-6 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-sm border border-[#1d1d1f]/10 shadow-sm">
+                  <span className="text-sm font-medium text-gold">30 kg in 90 Tagen</span>
+                </div>
+              </div>
+              <div className="flex flex-col justify-center p-8 md:p-12 text-center lg:text-left">
+                <span className="text-gold font-medium text-sm tracking-wide uppercase mb-2">
+                  Beratung & Hypnose
+                </span>
+                <h2 className="font-serif text-3xl md:text-4xl text-[#1d1d1f] font-medium mb-4">
+                  Mein Erfolgserlebnis mit Hypnose
+                </h2>
+                <p className="text-[#1d1d1f]/70 mb-8 max-w-md mx-auto lg:mx-0 leading-relaxed">
+                  100% mentale Arbeit – entdecken Sie, wie Hypnose und Beratung Sie auf Ihrem Weg begleiten können.
+                </p>
+                <span className="inline-flex items-center justify-center lg:justify-start gap-2 px-6 py-3 rounded-2xl bg-[#1d1d1f] text-[#f5f5f7] font-medium w-fit mx-auto lg:mx-0 group-hover:bg-[#2d2d2f] transition-colors duration-300">
+                  Jetzt mehr erfahren
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
       {/* Galerie – Salon in Szene */}
       <section className="py-24 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
