@@ -1,6 +1,7 @@
 import Image from "next/image";
 import GoldButton from "@/components/GoldButton";
 import ContactSection from "@/components/ContactSection";
+import KreationenSection from "@/components/KreationenSection";
 import ReviewsSection from "@/components/ReviewsSection";
 import { Instagram, Phone, Star } from "lucide-react";
 
@@ -168,6 +169,8 @@ export default function HomePage() {
           </a>
         </div>
       </section>
+
+      <KreationenSection />
 
       {/* Galerie – Salon in Szene */}
       <section className="py-24 px-6 lg:px-8">
