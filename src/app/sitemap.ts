@@ -1,8 +1,7 @@
 import { MetadataRoute } from "next";
 
 const baseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://www.selins-charisma.de");
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.selins-charisma.de";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = ["", "/beratung-hypnose", "/preise"];
