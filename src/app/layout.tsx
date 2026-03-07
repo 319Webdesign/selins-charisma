@@ -19,7 +19,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://selins-charisma.de"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.selins-charisma.de"
   ),
   title: {
     default: "Selin's Charisma | Friseur Weinheim – Damen, Herren & Kosmetik",
@@ -55,7 +55,7 @@ const jsonLd = {
     "Friseursalon in Weinheim: Damen, Herren und Kosmetik. Professionelle Beratung, Schnitt, Färbung, Balayage. Beratung & Hypnose.",
   url:
     process.env.NEXT_PUBLIC_SITE_URL ||
-    "https://selins-charisma.de",
+    "https://www.selins-charisma.de",
   telephone: "+49 6201 871966",
   address: {
     "@type": "PostalAddress",
