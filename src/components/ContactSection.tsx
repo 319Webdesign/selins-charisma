@@ -119,7 +119,7 @@ export default function ContactSection() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Selin's Charisma - Standort"
+              title="Selin's Charisma Friseur Weinheim - Standort Hauptstraße 71"
               className="absolute inset-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-500 ease-in-out"
             />
           </div>

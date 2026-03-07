@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import GoldButton from "@/components/GoldButton";
 import ContactSection from "@/components/ContactSection";
@@ -5,13 +6,19 @@ import KreationenSection from "@/components/KreationenSection";
 import ReviewsSection from "@/components/ReviewsSection";
 import { Instagram, Phone, Star } from "lucide-react";
 
+export const metadata: Metadata = {
+  title: "Friseur Weinheim – Damen, Herren & Kosmetik",
+  description:
+    "Selin's Charisma: Ihr Friseursalon in Weinheim. Professionelle Schnitte, Färbung, Balayage. Beratung & Hypnose. Hauptstraße 71, 69469 Weinheim. Jetzt Termin vereinbaren.",
+};
+
 const SALON_IMAGE = "/img/salon-interior.png";
 const GALLERY_IMAGES = [
-  { src: "/img/gallery-1.png", alt: "Selin's Charisma – Salonansicht" },
-  { src: "/img/gallery-2.png", alt: "Selin's Charisma – Styling-Stationen" },
-  { src: "/img/gallery-3.png", alt: "Selin's Charisma – Waschplätze" },
-  { src: "/img/gallery-4.png", alt: "Selin's Charisma – Salon-Innenansicht" },
-  { src: "/img/gallery-5.png", alt: "Selin's Charisma – Arbeitsbereiche" },
+  { src: "/img/gallery-1.png", alt: "Selin's Charisma Friseur Weinheim – Salonansicht Hauptstraße" },
+  { src: "/img/gallery-2.png", alt: "Selin's Charisma Friseur Weinheim – Styling-Stationen" },
+  { src: "/img/gallery-3.png", alt: "Selin's Charisma Friseur Weinheim – Waschplätze" },
+  { src: "/img/gallery-4.png", alt: "Selin's Charisma Friseur Weinheim – Salon-Innenansicht" },
+  { src: "/img/gallery-5.png", alt: "Selin's Charisma Friseur Weinheim – Arbeitsbereiche" },
 ];
 const LEISTUNGEN_DAMEN_IMAGE = "/img/leistungen-damen.png";
 const LEISTUNGEN_HERREN_IMAGE = "/img/leistungen-herren.png";
@@ -27,7 +34,7 @@ export default function HomePage() {
             Selin&apos;s Charisma
           </h1>
           <p className="text-white/70 text-lg md:text-xl lg:text-2xl text-center max-w-2xl mx-auto mb-14">
-            Ihr Friseursalon für zeitlose Eleganz – Damen, Herren & Kosmetik
+            Ihr Friseursalon in Weinheim – Damen, Herren & Kosmetik
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
@@ -75,20 +82,20 @@ export default function HomePage() {
               {
                 title: "Damen",
                 desc: "Schnitt, Färbung, Balayage – für Ihren einzigartigen Look.",
-                label: "Media Shooting in 1 Woche – Damen",
+                label: "Damen Friseur Weinheim – Media Shooting",
                 image: LEISTUNGEN_DAMEN_IMAGE,
               },
               {
                 title: "Herren",
                 desc: "Klassischer Schnitt oder moderner Stil – professionell und gepflegt.",
-                label: "Media Shooting in 1 Woche – Herren",
+                label: "Herren Friseur Weinheim – Media Shooting",
                 image: LEISTUNGEN_HERREN_IMAGE,
                 preiseTab: "herren",
               },
               {
                 title: "Kosmetik",
                 desc: "Hautpflege, Make-up und Wellness – für Ihr strahlendes Ich.",
-                label: "Media Shooting in 1 Woche – Kosmetik",
+                label: "Kosmetik Weinheim – Media Shooting",
                 image: LEISTUNGEN_KOSMETIK_IMAGE,
                 preiseTab: "kosmetik",
               },
@@ -244,7 +251,7 @@ export default function HomePage() {
               <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[320px] overflow-hidden">
                 <Image
                   src={SALON_IMAGE}
-                  alt="Selin's Charisma – Einblicke auf Instagram"
+                  alt="Selin's Charisma Friseur Weinheim – Einblicke auf Instagram"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   sizes="(max-width: 1024px) 100vw, 50vw"

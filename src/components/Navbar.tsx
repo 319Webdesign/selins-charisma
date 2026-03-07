@@ -34,11 +34,11 @@ export default function Navbar() {
           className={`flex items-center gap-3 hover:opacity-90 transition-all duration-500 ease-in-out ${
             isLightPage ? "text-[#1d1d1f]" : "text-white"
           }`}
-          aria-label="Selin's Charisma – Startseite"
+          aria-label="Selin's Charisma Friseur Weinheim – Startseite"
         >
           <Image
             src="/img/selins-charisma-logo.png?v=2"
-            alt="Selin's Charisma"
+            alt="Selin's Charisma Friseur Weinheim"
             width={64}
             height={64}
             className="h-16 w-auto object-contain"
