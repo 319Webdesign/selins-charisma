@@ -18,7 +18,7 @@ export default function Footer() {
               Selin&apos;s Charisma
             </Link>
             <p className="mt-3 text-white/60 text-sm max-w-xs">
-              Friseursalon für Damen, Herren & Kosmetik. Mit Beratung und Hypnose.
+              Friseursalon in Weinheim – Damen, Herren & Kosmetik. Mit Beratung und Hypnose.
             </p>
             <p className="mt-2 text-white/50 text-sm flex items-center gap-1.5">
               <MapPin className="w-3.5 h-3.5 text-gold/70" />
