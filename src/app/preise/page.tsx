@@ -73,6 +73,14 @@ function PreiseContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const activeTab = getTabFromUrl(searchParams);
+  const [isMobile, setIsMobile] = useState(true);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const listener = () => setIsMobile(mq.matches);
+    mq.addEventListener("change", listener);
+    return () => mq.removeEventListener("change", listener);
+  }, []);
 
   const handleTabClick = (key: TabKey) => {
     router.replace(`/preise?tab=${key}`, { scroll: false });

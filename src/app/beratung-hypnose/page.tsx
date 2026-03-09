@@ -17,20 +17,34 @@ export default function BeratungHypnosePage() {
   }, []);
 
   const noAnim = { opacity: 1, y: 0 };
-  const heroAnim = isMobile
+  const heroAnimMobile = { initial: noAnim, animate: noAnim, transition: { duration: 0 } };
+  const heroAnimDesktop = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
+  };
+  const heroAnim = isMobile ? heroAnimMobile : heroAnimDesktop;
+
+  const scrollAnimMobile = {
+    initial: noAnim,
+    whileInView: noAnim,
+    viewport: { once: true },
+    transition: { duration: 0 },
+  };
+  const scrollAnimDesktop = {
+    initial: { opacity: 0, y: 24 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-60px" },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+  };
+  const scrollAnim = isMobile ? scrollAnimMobile : scrollAnimDesktop;
+
+  const heroContentAnim = isMobile
     ? { initial: noAnim, animate: noAnim, transition: { duration: 0 } }
     : {
-        initial: { opacity: 0, y: 20 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
-      };
-  const scrollAnim = isMobile
-    ? { initial: noAnim, whileInView: noAnim, viewport: { once: true }, transition: { duration: 0 } }
-    : {
         initial: { opacity: 0, y: 24 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, margin: "-60px" },
-        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const },
       };
 
   return (
@@ -54,7 +68,7 @@ export default function BeratungHypnosePage() {
           </motion.p>
 
           <motion.div
-            {...(isMobile ? { initial: noAnim, animate: noAnim, transition: { duration: 0 } } : { initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] })}
+            {...heroContentAnim}
             className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center"
           >
             {/* Links: Text */}
