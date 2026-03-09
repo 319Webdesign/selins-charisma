@@ -100,13 +100,15 @@ export default function ContactSection() {
                 69469 Weinheim
               </p>
             </div>
-            <a
-              href={PHONE_LINK}
-              className="inline-flex items-center gap-2 text-gold hover:text-gold/90 transition-all duration-500"
-            >
-              <Phone className="w-5 h-5" strokeWidth={1.5} />
-              <span className="font-medium">{PHONE}</span>
-            </a>
+            <div className="flex justify-center lg:justify-start">
+              <a
+                href={PHONE_LINK}
+                className="inline-flex items-center gap-2 text-gold hover:text-gold/90 transition-all duration-500"
+              >
+                <Phone className="w-5 h-5" strokeWidth={1.5} />
+                <span className="font-medium">{PHONE}</span>
+              </a>
+            </div>
           </div>
 
           {/* Bento: Google Maps mit Graustufen */}

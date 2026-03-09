@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Phone } from "lucide-react";
 import { motion } from "framer-motion";
@@ -121,10 +121,10 @@ function PreiseContent() {
             {items.map((item, idx) => (
               <motion.li
                 key={item.name}
-                initial={{ opacity: 0, y: 16 }}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-20px" }}
-                transition={{ duration: 0.5, delay: idx * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={isMobile ? { duration: 0 } : { duration: 0.5, delay: idx * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="flex justify-between items-baseline gap-4 py-5 border-b border-gold/20 last:border-0"
               >
                 <div className="min-w-0">

@@ -1,44 +1,60 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Brain, Target, Shield } from "lucide-react";
 import Link from "next/link";
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
-};
-
 export default function BeratungHypnosePage() {
+  const [isMobile, setIsMobile] = useState(true);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const listener = () => setIsMobile(mq.matches);
+    mq.addEventListener("change", listener);
+    return () => mq.removeEventListener("change", listener);
+  }, []);
+
+  const noAnim = { opacity: 1, y: 0 };
+  const heroAnim = isMobile
+    ? { initial: noAnim, animate: noAnim, transition: { duration: 0 } }
+    : {
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
+      };
+  const scrollAnim = isMobile
+    ? { initial: noAnim, whileInView: noAnim, viewport: { once: true }, transition: { duration: 0 } }
+    : {
+        initial: { opacity: 0, y: 24 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, margin: "-60px" },
+        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+      };
+
   return (
     <div className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f]">
       {/* Hero */}
       <section className="pt-36 pb-36 lg:pb-48 px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            {...heroAnim}
             className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight mb-6 text-[#1d1d1f] leading-tight text-center"
           >
             Beratung & Hypnose
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            initial={heroAnim.initial}
+            animate={heroAnim.animate}
+            transition={isMobile ? { duration: 0 } : { duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="text-lg md:text-xl text-[#1d1d1f]/70 max-w-2xl mx-auto mb-32 lg:mb-40 leading-relaxed text-center"
           >
             Professionelle Beratung und Hypnose für Ihr Wohlbefinden – in vertrauensvoller Atmosphäre.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            {...(isMobile ? { initial: noAnim, animate: noAnim, transition: { duration: 0 } } : { initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] })}
             className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center"
           >
             {/* Links: Text */}
@@ -77,7 +93,7 @@ export default function BeratungHypnosePage() {
       {/* Bento-Box Transformation */}
       <section className="pt-12 pb-20 px-6 lg:px-8">
         <motion.h2
-          {...fadeInUp}
+          {...scrollAnim}
           className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-[#1d1d1f] text-center mb-14"
         >
           Transformation erleben
@@ -85,7 +101,7 @@ export default function BeratungHypnosePage() {
         <div className="max-w-6xl mr-auto ml-0">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-3">
             {/* Linke Box – Vorher/Nachher (groß) */}
-            <motion.div {...fadeInUp} className="md:col-span-9">
+            <motion.div {...scrollAnim} className="md:col-span-9">
               <div className="rounded-[24px] overflow-hidden aspect-[4/3] md:aspect-auto md:min-h-[480px] relative">
                 <Image
                   src="/img/vorher-nacher.jpeg"
@@ -104,21 +120,21 @@ export default function BeratungHypnosePage() {
             {/* Rechte Boxen – Statistiken */}
             <div className="md:col-span-3 flex flex-col gap-6 md:gap-8 md:justify-center">
               <motion.div
-                {...fadeInUp}
+                {...scrollAnim}
                 className="rounded-[20px] bg-white shadow-[0_2px_24px_rgba(0,0,0,0.06)] px-5 py-2.5 flex flex-col justify-center border border-[#1d1d1f]/05"
               >
                 <span className="text-3xl font-serif font-medium text-gold mb-0.5">90</span>
                 <span className="text-[#1d1d1f]/70 text-sm font-medium">Tage</span>
               </motion.div>
               <motion.div
-                {...fadeInUp}
+                {...scrollAnim}
                 className="rounded-[20px] bg-white shadow-[0_2px_24px_rgba(0,0,0,0.06)] px-5 py-2.5 flex flex-col justify-center border border-[#1d1d1f]/05"
               >
                 <span className="text-3xl font-serif font-medium text-gold mb-0.5">-30</span>
                 <span className="text-[#1d1d1f]/70 text-sm font-medium">kg</span>
               </motion.div>
               <motion.div
-                {...fadeInUp}
+                {...scrollAnim}
                 className="rounded-[20px] bg-white shadow-[0_2px_24px_rgba(0,0,0,0.06)] px-5 py-2.5 flex flex-col justify-center border border-[#1d1d1f]/05"
               >
                 <span className="text-2xl font-serif font-medium text-gold mb-0.5">100%</span>
@@ -128,7 +144,7 @@ export default function BeratungHypnosePage() {
           </div>
         </div>
         <motion.div
-          {...fadeInUp}
+          {...scrollAnim}
           className="mt-14 max-w-2xl mx-auto text-center space-y-6 text-[#1d1d1f]/80 text-lg leading-relaxed"
         >
           <p>
@@ -144,7 +160,7 @@ export default function BeratungHypnosePage() {
       <section className="py-20 px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <motion.h2
-            {...fadeInUp}
+            {...scrollAnim}
             className="font-serif text-3xl md:text-4xl font-medium text-[#1d1d1f] text-center mb-14"
           >
             Meine Methodik
@@ -152,7 +168,7 @@ export default function BeratungHypnosePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <motion.div
-              {...fadeInUp}
+              {...scrollAnim}
               className="rounded-[24px] bg-white shadow-[0_4px_32px_rgba(0,0,0,0.08)] p-8 border border-[#1d1d1f]/05 text-center md:text-left"
             >
               <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
@@ -165,7 +181,7 @@ export default function BeratungHypnosePage() {
             </motion.div>
 
             <motion.div
-              {...fadeInUp}
+              {...scrollAnim}
               className="rounded-[24px] bg-white shadow-[0_4px_32px_rgba(0,0,0,0.08)] p-8 border border-[#1d1d1f]/05 text-center md:text-left"
             >
               <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
@@ -178,7 +194,7 @@ export default function BeratungHypnosePage() {
             </motion.div>
 
             <motion.div
-              {...fadeInUp}
+              {...scrollAnim}
               className="rounded-[24px] bg-white shadow-[0_4px_32px_rgba(0,0,0,0.08)] p-8 border border-[#1d1d1f]/05 text-center md:text-left"
             >
               <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
@@ -196,7 +212,7 @@ export default function BeratungHypnosePage() {
       {/* CTA */}
       <section className="py-24 px-6 lg:px-8">
         <motion.div
-          {...fadeInUp}
+          {...scrollAnim}
           className="max-w-xl mx-auto text-center"
         >
           <Link

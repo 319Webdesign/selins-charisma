@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Instagram, X } from "lucide-react";
 import { motion, useInView } from "framer-motion";
@@ -34,8 +34,17 @@ const cardVariants = {
 export default function KreationenSection() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(true);
   const masonryRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(masonryRef, { once: true, margin: "-50px", amount: 0.1 });
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const listener = () => setIsMobile(mq.matches);
+    mq.addEventListener("change", listener);
+    return () => mq.removeEventListener("change", listener);
+  }, []);
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
@@ -69,7 +78,8 @@ export default function KreationenSection() {
               custom={index}
               variants={cardVariants}
               initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
+              animate={isMobile ? "visible" : isInView ? "visible" : "hidden"}
+              transition={isMobile ? { duration: 0, delay: 0 } : undefined}
               onClick={() => openLightbox(index)}
               className="group block w-full break-inside-avoid mb-6 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2 focus:ring-offset-[#0a0a0a] focus:rounded-3xl text-left"
             >
