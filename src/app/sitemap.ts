@@ -4,7 +4,7 @@ const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.selins-charisma.de";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/beratung-hypnose", "/preise"];
+  const routes = ["", "/beratung-hypnose", "/preise", "/impressum", "/datenschutz", "/cookie-richtlinien"];
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),

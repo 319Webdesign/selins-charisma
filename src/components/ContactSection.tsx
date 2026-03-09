@@ -89,8 +89,8 @@ export default function ContactSection() {
                 ))}
               </ul>
             </div>
-            <div>
-              <h3 className="font-serif text-2xl md:text-xl text-white mb-4 flex items-center gap-2">
+            <div className="text-center lg:text-left">
+              <h3 className="font-serif text-2xl md:text-xl text-white mb-4 flex items-center justify-center lg:justify-start gap-2">
                 <MapPin className="w-5 h-5 text-gold" strokeWidth={1.5} />
                 Adresse
               </h3>

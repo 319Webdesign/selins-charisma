@@ -42,7 +42,7 @@ export default function BeratungHypnosePage() {
             className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center"
           >
             {/* Links: Text */}
-            <div className="flex flex-col justify-center space-y-6 text-[#1d1d1f]/80 text-lg leading-relaxed order-2 lg:order-1">
+            <div className="flex flex-col justify-center space-y-6 text-[#1d1d1f]/80 text-lg leading-relaxed order-2 lg:order-1 text-center lg:text-left">
               <p>
                 Mein Name ist Yasemin und ich begleite Menschen als Berater mit Hypnose auf ihrem Weg zu mehr Wohlbefinden und innerer Balance.
               </p>
@@ -153,9 +153,9 @@ export default function BeratungHypnosePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <motion.div
               {...fadeInUp}
-              className="rounded-[24px] bg-white shadow-[0_4px_32px_rgba(0,0,0,0.08)] p-8 border border-[#1d1d1f]/05"
+              className="rounded-[24px] bg-white shadow-[0_4px_32px_rgba(0,0,0,0.08)] p-8 border border-[#1d1d1f]/05 text-center md:text-left"
             >
-              <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
                 <Brain className="w-7 h-7 text-gold" strokeWidth={1.5} />
               </div>
               <h3 className="font-serif text-xl font-medium text-[#1d1d1f] mb-3">Mentale Stärke</h3>
@@ -166,9 +166,9 @@ export default function BeratungHypnosePage() {
 
             <motion.div
               {...fadeInUp}
-              className="rounded-[24px] bg-white shadow-[0_4px_32px_rgba(0,0,0,0.08)] p-8 border border-[#1d1d1f]/05"
+              className="rounded-[24px] bg-white shadow-[0_4px_32px_rgba(0,0,0,0.08)] p-8 border border-[#1d1d1f]/05 text-center md:text-left"
             >
-              <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
                 <Target className="w-7 h-7 text-gold" strokeWidth={1.5} />
               </div>
               <h3 className="font-serif text-xl font-medium text-[#1d1d1f] mb-3">Klare Ziele</h3>
@@ -179,9 +179,9 @@ export default function BeratungHypnosePage() {
 
             <motion.div
               {...fadeInUp}
-              className="rounded-[24px] bg-white shadow-[0_4px_32px_rgba(0,0,0,0.08)] p-8 border border-[#1d1d1f]/05"
+              className="rounded-[24px] bg-white shadow-[0_4px_32px_rgba(0,0,0,0.08)] p-8 border border-[#1d1d1f]/05 text-center md:text-left"
             >
-              <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
                 <Shield className="w-7 h-7 text-gold" strokeWidth={1.5} />
               </div>
               <h3 className="font-serif text-xl font-medium text-[#1d1d1f] mb-3">Vertrauen & Schutz</h3>
