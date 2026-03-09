@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingCallButton from "@/components/FloatingCallButton";
+import CookieBanner from "@/components/CookieBanner";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import MouseGlowEffect from "@/components/MouseGlowEffect";
 
@@ -92,6 +93,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <CookieBanner />
         <FloatingCallButton />
       </body>
     </html>
