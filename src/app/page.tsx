@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import heroImage from "../../public/img/hero-img.png";
+import heroImage from "../../public/img/hero.jpeg";
 import GoldButton from "@/components/GoldButton";
 import ContactSection from "@/components/ContactSection";
 import KreationenSection from "@/components/KreationenSection";
@@ -63,7 +63,7 @@ export default function HomePage() {
               priority
               quality={90}
               placeholder="blur"
-              className="object-cover object-[50%_20%] lg:object-[50%_center] contrast-[1.02]"
+              className="object-cover object-[50%_15%] lg:object-[50%_10%] contrast-[1.02]"
               sizes="(max-width: 1024px) 100vw, (max-width: 1920px) 50vw, 960px"
             />
           </div>
@@ -139,7 +139,7 @@ export default function HomePage() {
           {/* Bild links – randlos wie Hero */}
           <div className="relative w-full overflow-hidden aspect-[3/4] sm:aspect-[2/3] lg:aspect-auto lg:h-full lg:min-h-0">
             <Image
-              src="/img/hypnose-hero.png"
+              src="/img/hypnose-bild.jpeg"
               alt="Selin's Charisma Weinheim – Hypnose Beratung"
               fill
               className="object-cover object-[50%_20%]"
@@ -286,7 +286,7 @@ export default function HomePage() {
             <div className="relative">
               <div className="rounded-3xl overflow-hidden aspect-[3/4] sm:aspect-[4/5] relative shadow-xl">
                 <Image
-                  src="/img/instagram-cta.png"
+                  src="/img/insta-cta.jpeg"
                   alt="Selin's Charisma Weinheim – Einblicke auf Instagram"
                   fill
                   className="object-cover object-[50%_20%]"
