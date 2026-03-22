@@ -117,7 +117,7 @@ export default function KreationenSection() {
           </button>
 
         {/* Slider – overflow versteckt, kein manuelles Scrollen */}
-        <div className="overflow-hidden px-20 lg:px-24">
+        <div className="overflow-hidden px-4 sm:px-20 lg:px-24">
           <div
             ref={trackRef}
             className="flex gap-6 overflow-x-auto"
