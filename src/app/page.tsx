@@ -55,7 +55,7 @@ export default function HomePage() {
               </GoldButton>
             </div>
           </div>
-          <div className="order-1 lg:order-2 relative w-full overflow-hidden aspect-[3/2] lg:aspect-auto lg:h-full lg:min-h-0">
+          <div className="order-1 lg:order-2 relative w-full overflow-hidden aspect-[3/4] sm:aspect-[3/2] lg:aspect-auto lg:h-full lg:min-h-0">
             <Image
               src={heroImage}
               alt="Selin's Charisma Weinheim – Team und professioneller Auftritt"
@@ -63,7 +63,7 @@ export default function HomePage() {
               priority
               quality={90}
               placeholder="blur"
-              className="object-cover object-[50%_15%] lg:object-[50%_10%] contrast-[1.02]"
+              className="object-cover object-[50%_top] lg:object-[50%_10%] contrast-[1.02]"
               sizes="(max-width: 1024px) 100vw, (max-width: 1920px) 50vw, 960px"
             />
           </div>
