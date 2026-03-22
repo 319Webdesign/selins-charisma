@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import heroImage from "../../public/img/hero-img.png";
 import GoldButton from "@/components/GoldButton";
 import ContactSection from "@/components/ContactSection";
 import KreationenSection from "@/components/KreationenSection";
 import ReviewsSection from "@/components/ReviewsSection";
-import { Instagram, Phone, Star } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Friseur Weinheim – Damen, Herren & Kosmetik",
@@ -21,60 +22,58 @@ const GALLERY_IMAGES = [
   { src: "/img/gallery-5.png", alt: "Selin's Charisma Friseur Weinheim – Arbeitsbereiche" },
 ];
 const LEISTUNGEN_DAMEN_IMAGE = "/img/leistungen-damen.png";
-const LEISTUNGEN_HERREN_IMAGE = "/img/leistungen-herren.png";
+const LEISTUNGEN_HERREN_IMAGE = "/img/leistung-herren.jpeg";
 const LEISTUNGEN_KOSMETIK_IMAGE = "/img/leistungen-kosmetik.png";
 
 export default function HomePage() {
   return (
     <>
-      {/* Hero – Titel zentriert, hier später Film/Video volle Breite */}
-      <section className="min-h-[70vh] flex flex-col justify-center pt-44 pb-28 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto w-full text-center">
-          <h1 className="font-serif text-6xl md:text-6xl lg:text-7xl xl:text-8xl text-white font-medium tracking-tight mb-6">
-            Selin&apos;s Charisma
-          </h1>
-          <p className="text-white/70 text-lg md:text-xl lg:text-2xl text-center max-w-2xl mx-auto mb-14">
-            Ihr Friseursalon in Weinheim – Damen, Herren & Kosmetik
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="tel:+496201871966"
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl border border-gold/60 text-gold font-medium hover:bg-gold/10 transition-all duration-500 ease-in-out"
-            >
-              <Phone className="w-5 h-5" strokeWidth={1.5} />
-              Jetzt anrufen
-            </a>
-            <a
-              href="https://www.google.com/maps"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex flex-col items-center gap-1 px-3 py-2 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-500 ease-in-out"
-            >
-              <span className="flex items-center gap-2">
-                <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" aria-hidden>
-                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                </svg>
-                <span className="flex items-center gap-0.5">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-gold text-gold flex-shrink-0" strokeWidth={1.5} />
-                  ))}
-                </span>
-              </span>
-              <span className="text-apple-dark/90 font-medium text-xs whitespace-nowrap">
-                4,8/5 von zufriedenen Kunden
-              </span>
-            </a>
+      {/* Hero – Split-Layout wie Referenz: Text links (Charcoal), Bild rechts */}
+      <section className="relative bg-black overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:min-h-[min(100dvh,56rem)] pt-24 md:pt-28 lg:pt-24">
+          <div className="order-2 lg:order-1 flex flex-col justify-center px-6 sm:px-10 lg:px-14 xl:pl-20 xl:pr-16 py-14 lg:py-20 bg-charcoal">
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-[2.75rem] xl:text-6xl font-medium tracking-tight leading-[1.15] mb-6 max-w-xl">
+              <span className="text-white">Selin&apos;s Charisma: Ihr exklusiver Friseur in Weinheim für </span>
+              <span className="text-gold">Schönheit</span>
+              <span className="text-white"> &amp; </span>
+              <span className="text-gold">Mentale Stärke</span>
+            </h1>
+            <p className="text-white/85 font-sans text-base sm:text-lg leading-relaxed max-w-xl mb-10">
+              Erleben Sie meisterhaftes Haarstyling und transformative Hypnose an einem Ort. Wir vereinen
+              luxuriöses Wellness-Ambiente mit fachmännischer Expertise für Ihre vollständige Verjüngung in
+              Weinheim.
+            </p>
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+              <a
+                href="tel:+496201871966"
+                className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-gold text-black font-semibold text-sm sm:text-base border border-gold hover:bg-gold/90 transition-all duration-500 ease-in-out"
+              >
+                Termin buchen
+              </a>
+              <GoldButton href="#leistungen" variant="outline" className="px-8 py-3.5 rounded-xl border-gold text-gold font-semibold hover:bg-gold/10">
+                Mehr erfahren
+              </GoldButton>
+            </div>
+          </div>
+          <div className="order-1 lg:order-2 relative w-full overflow-hidden aspect-[3/2] lg:aspect-auto lg:h-full lg:min-h-0">
+            <Image
+              src={heroImage}
+              alt="Selin's Charisma Weinheim – Team und professioneller Auftritt"
+              fill
+              priority
+              quality={90}
+              placeholder="blur"
+              className="object-cover object-[50%_20%] lg:object-[50%_center] contrast-[1.02]"
+              sizes="(max-width: 1024px) 100vw, (max-width: 1920px) 50vw, 960px"
+            />
           </div>
         </div>
       </section>
 
       {/* Feature Cards: Damen, Herren, Kosmetik */}
-      <section className="py-24 px-6 lg:px-8 bg-black/40">
+      <section id="leistungen" className="py-24 px-6 lg:px-8 bg-black/40 scroll-mt-24">
         <div className="max-w-7xl mx-auto">
-          <h2 className="font-serif text-4xl md:text-4xl text-white text-center mb-16 font-medium">
+          <h2 className="font-serif text-5xl md:text-6xl text-white text-center mb-16 font-medium">
             Unsere Leistungen
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 lg:gap-12">
@@ -133,47 +132,87 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Vorher-Nachher CTA – Beratung & Hypnose */}
-      <section className="py-24 px-6 lg:px-8 bg-[#f5f5f7] text-[#1d1d1f]">
-        <div className="max-w-6xl mx-auto">
-          <a
-            href="/beratung-hypnose"
-            className="group block rounded-[24px] overflow-hidden bg-white shadow-[0_4px_32px_rgba(0,0,0,0.08)] border border-[#1d1d1f]/05 hover:shadow-[0_8px_48px_rgba(0,0,0,0.12)] transition-all duration-500"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[420px]">
-              <div className="relative flex items-center justify-center py-5 lg:py-6 px-4 lg:px-6 bg-[#fafafa]">
-                <div className="relative w-full max-w-[320px] aspect-[3/4] overflow-hidden rounded-2xl">
-                  <Image
-                    src="/img/vorher-nacher.jpeg"
-                    alt="Vorher-Nachher Transformation – 30 kg in 3 Monaten mit Beratung & Hypnose"
-                    fill
-                    className="object-contain group-hover:scale-105 transition-transform duration-700 ease-out"
-                    sizes="(max-width: 1024px) 100vw, 320px"
-                  />
+      {/* Hypnose – Feature-Sektion, Hero-Split-Layout */}
+      <section className="relative bg-[#f5f0e8] overflow-hidden text-[#1d1d1f]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:min-h-[min(90vh,52rem)]">
+
+          {/* Bild links – randlos wie Hero */}
+          <div className="relative w-full overflow-hidden aspect-[3/4] sm:aspect-[2/3] lg:aspect-auto lg:h-full lg:min-h-0">
+            <Image
+              src="/img/hypnose-hero.png"
+              alt="Selin's Charisma Weinheim – Hypnose Beratung"
+              fill
+              className="object-cover object-[50%_20%]"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
+
+          {/* Inhalt rechts */}
+          <div className="flex flex-col justify-center px-6 sm:px-10 lg:px-14 xl:px-16 py-14 lg:py-20">
+            <span className="text-gold font-semibold text-xs tracking-[0.18em] uppercase mb-4">
+              Transformation durch Hypnose
+            </span>
+            <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-[#1d1d1f] mb-5">
+              Finden Sie Ihre innere{" "}
+              <span className="text-gold">Stärke</span>
+            </h2>
+            <p className="text-[#1d1d1f]/70 text-lg leading-relaxed mb-8">
+              Mit gezielter Hypnotherapie aktivieren wir die natürlichen Heilungskräfte Ihres
+              Unterbewusstseins. Ein bewährter Weg zu tiefem Wohlbefinden und persönlichem Wachstum.
+            </p>
+
+            {/* Feature Cards */}
+            <div className="flex flex-col gap-3 mb-8">
+              {[
+                {
+                  icon: (
+                    <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" strokeWidth={1.6} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  ),
+                  title: "Tiefe Entspannung",
+                  desc: "In einem sicheren, ruhigen Raum finden Sie echte Ruhe und lösen Spannungen auf.",
+                },
+                {
+                  icon: (
+                    <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" strokeWidth={1.6} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  ),
+                  title: "Innere Blockaden lösen",
+                  desc: "Entdecken Sie verborgene Potenziale und überwinden Sie limitierende Überzeugungen.",
+                },
+                {
+                  icon: (
+                    <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" strokeWidth={1.6} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  ),
+                  title: "Ganzheitliches Wohlbefinden",
+                  desc: "Harmonisieren Sie Verstand und Körper für nachhaltige Veränderungen und Balance.",
+                },
+              ].map((feat) => (
+                <div key={feat.title} className="flex items-start gap-4 bg-white/80 rounded-2xl px-5 py-4 shadow-sm border border-[#1d1d1f]/05">
+                  <div className="mt-0.5 shrink-0">{feat.icon}</div>
+                  <div>
+                      <p className="font-semibold text-base text-gold mb-0.5">{feat.title}</p>
+                      <p className="text-[#1d1d1f]/65 text-base leading-relaxed">{feat.desc}</p>
+                  </div>
                 </div>
-                <div className="absolute top-6 left-6 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-sm border border-[#1d1d1f]/10 shadow-sm">
-                  <span className="text-sm font-medium text-gold">30 kg in 90 Tagen</span>
-                </div>
-              </div>
-              <div className="flex flex-col justify-center p-8 md:p-12 text-center lg:text-left">
-                <span className="text-gold font-medium text-sm tracking-wide uppercase mb-2">
-                  Beratung & Hypnose
-                </span>
-                <h2 className="font-serif text-3xl md:text-4xl text-[#1d1d1f] font-medium mb-4">
-                  Mein Erfolgserlebnis mit Hypnose
-                </h2>
-                <p className="text-[#1d1d1f]/70 mb-8 max-w-md mx-auto lg:mx-0 leading-relaxed">
-                  100% mentale Arbeit – entdecken Sie, wie Hypnose und Beratung Sie auf Ihrem Weg begleiten können.
-                </p>
-                <span className="inline-flex items-center justify-center lg:justify-start gap-2 px-6 py-3 rounded-2xl bg-[#1d1d1f] text-[#f5f5f7] font-medium w-fit mx-auto lg:mx-0 group-hover:bg-[#2d2d2f] transition-colors duration-300">
-                  Jetzt mehr erfahren
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </span>
-              </div>
+              ))}
             </div>
-          </a>
+
+            {/* CTA */}
+            <a
+              href="/beratung-hypnose"
+              className="w-full flex items-center justify-center px-8 py-4 rounded-2xl bg-gold text-black font-bold text-base hover:bg-gold/90 transition-all duration-300 shadow-md mb-3"
+            >
+              Erste Beratung Buchen
+            </a>
+            <p className="text-center text-[#1d1d1f]/50 text-xs tracking-wide">
+              30 Min. Erstgespräch &bull; Kostenlos &bull; Unverbindlich
+            </p>
+          </div>
         </div>
       </section>
 
@@ -182,7 +221,7 @@ export default function HomePage() {
       {/* Galerie – Salon in Szene */}
       <section className="py-24 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="font-serif text-4xl md:text-4xl text-white text-center mb-4 font-medium">
+          <h2 className="font-serif text-5xl md:text-6xl text-white text-center mb-4 font-medium">
             Unser Salon
           </h2>
           <p className="text-white/60 text-center mb-16 max-w-xl mx-auto">
@@ -239,39 +278,74 @@ export default function HomePage() {
       </section>
 
       {/* Instagram CTA */}
-      <section className="py-24 px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group block rounded-3xl overflow-hidden bg-white/5 border border-white/10 hover:border-gold/40 transition-all duration-500 ease-in-out"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[320px]">
-              <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[320px] overflow-hidden">
+      <section className="bg-[#f5f0e8] py-20 px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+            {/* Bild links mit Instagram-Badge */}
+            <div className="relative">
+              <div className="rounded-3xl overflow-hidden aspect-[3/4] sm:aspect-[4/5] relative shadow-xl">
                 <Image
-                  src={SALON_IMAGE}
-                  alt="Selin's Charisma Friseur Weinheim – Einblicke auf Instagram"
+                  src="/img/instagram-cta.png"
+                  alt="Selin's Charisma Weinheim – Einblicke auf Instagram"
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="object-cover object-[50%_20%]"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent lg:from-black/40" />
               </div>
-              <div className="flex flex-col justify-center p-8 md:p-12 text-center lg:text-left">
-                <h2 className="font-serif text-3xl md:text-3xl text-white font-medium mb-3">
-                  Folgen Sie uns auf Instagram
-                </h2>
-                <p className="text-white/70 mb-8 max-w-md">
-                  Inspiration, neueste Looks und Einblicke hinter die Kulissen – bleiben Sie auf dem Laufenden.
-                </p>
-                <span className="inline-flex items-center justify-center lg:justify-start gap-2 text-gold font-medium group-hover:gap-3 transition-all duration-300">
-                  <Instagram className="w-5 h-5" strokeWidth={1.5} />
-                  Zu Instagram
-                </span>
+              {/* Instagram Handle Badge */}
+              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/95 backdrop-blur-sm text-[#1d1d1f] font-semibold text-sm px-4 py-2.5 rounded-full shadow-lg whitespace-nowrap">
+                <Instagram className="w-4 h-4 text-[#1d1d1f]" strokeWidth={2} />
+                @selinscharisma
               </div>
             </div>
-          </a>
+
+            {/* Inhalt rechts */}
+            <div className="flex flex-col justify-center">
+              {/* Label */}
+              <div className="flex items-center gap-2 mb-4">
+                <svg className="w-4 h-4 text-gold fill-gold" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                <span className="text-gold font-semibold text-xs tracking-[0.18em] uppercase">Folge uns</span>
+              </div>
+
+              <h2 className="font-serif text-4xl sm:text-5xl font-bold leading-tight text-[#1d1d1f] mb-5">
+                Entdecke Deine{" "}
+                <span className="text-gold">Transformation</span>
+              </h2>
+
+              <p className="text-[#1d1d1f]/70 text-base leading-relaxed mb-8">
+                Auf unserem Instagram findest Du die neusten Haarkreationen, inspirierende Before &amp; After Stories, exklusive Wellness-Tipps und einen Einblick in unseren Alltag als Expertin für Schönheit und Hypnotherapie.
+              </p>
+
+              {/* Feature List */}
+              <div className="flex flex-col gap-4 mb-10">
+                {[
+                  { title: "Tägliche Updates", desc: "Neueste Haartrends und Styles" },
+                  { title: "Exklusive Inhalte", desc: "Tipps nur für unsere Follower" },
+                  { title: "Community", desc: "Interagiere mit uns und anderen" },
+                ].map((item) => (
+                  <div key={item.title} className="flex items-start gap-4 bg-white/80 rounded-2xl px-5 py-4 shadow-sm border border-[#1d1d1f]/05">
+                    <div className="mt-1 shrink-0 w-2.5 h-2.5 rounded-full bg-gold" />
+                    <div>
+                      <p className="font-semibold text-sm text-gold mb-0.5">{item.title}</p>
+                      <p className="text-[#1d1d1f]/60 text-sm leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA Button */}
+              <a
+                href="https://www.instagram.com/selinscharisma"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gold text-black font-bold text-base hover:bg-gold/90 transition-all duration-300 shadow-md"
+              >
+                <Instagram className="w-5 h-5" strokeWidth={2} />
+                Jetzt Folgen
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 

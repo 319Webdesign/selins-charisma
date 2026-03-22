@@ -51,11 +51,11 @@ export default function ContactSection() {
   return (
     <section id="kontakt" className="py-24 px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-serif text-4xl md:text-4xl text-white text-center font-medium mb-16">
+        <h2 className="font-serif text-5xl md:text-6xl text-white text-center font-medium mb-16">
           Kontakt & Anfahrt
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           {/* Bento: Öffnungszeiten & Kontakt */}
           <div className="rounded-3xl bg-bento border border-white/5 p-8 md:p-10 flex flex-col justify-center space-y-8">
             <div>
@@ -112,7 +112,7 @@ export default function ContactSection() {
           </div>
 
           {/* Bento: Google Maps mit Graustufen */}
-          <div className="rounded-3xl overflow-hidden border border-white/5 bg-bento relative h-[320px] md:h-[380px]">
+          <div className="rounded-3xl overflow-hidden border border-white/5 bg-bento relative min-h-[320px]">
             <iframe
               src={MAP_EMBED_URL}
               width="100%"
@@ -127,14 +127,31 @@ export default function ContactSection() {
           </div>
         </div>
 
-        <div className="flex justify-center mt-12">
-          <a
-            href={PHONE_LINK}
-            className="inline-flex items-center gap-3 px-8 py-4 text-sm font-medium border border-gold/60 text-gold rounded-2xl hover:bg-gold/10 transition-all duration-500 ease-in-out"
-          >
-            <Phone className="w-5 h-5" strokeWidth={1.5} />
-            Jetzt anrufen: {PHONE}
-          </a>
+        {/* CTA Banner */}
+        <div className="mt-14 rounded-3xl bg-[#f5f0e8] px-8 py-12 md:px-16 md:py-14 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="text-center md:text-left">
+            <p className="text-gold font-semibold text-sm uppercase tracking-[0.16em] mb-2">
+              Bereit für Ihre Verwandlung?
+            </p>
+            <h3 className="font-serif text-3xl md:text-4xl font-bold text-[#1d1d1f] leading-tight mb-3">
+              Sichern Sie sich Ihren Wunschtermin –<br className="hidden md:block" /> noch heute.
+            </h3>
+            <p className="text-[#1d1d1f]/70 text-base max-w-lg">
+              Ob traumhaftes Haarstyling oder transformative Hypnose – rufen Sie uns jetzt an und wir finden gemeinsam den perfekten Termin für Sie.
+            </p>
+          </div>
+          <div className="flex flex-col items-center gap-3 shrink-0">
+            <a
+              href={PHONE_LINK}
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gold text-black font-bold text-base hover:bg-gold/90 transition-all duration-300 shadow-md whitespace-nowrap"
+            >
+              <Phone className="w-5 h-5" strokeWidth={2} />
+              {PHONE}
+            </a>
+            <p className="text-[#1d1d1f]/50 text-xs font-medium">
+              Di–Fr 09–18 Uhr &bull; Sa 09–16 Uhr
+            </p>
+          </div>
         </div>
       </div>
     </section>
