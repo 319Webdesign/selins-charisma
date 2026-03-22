@@ -1,11 +1,9 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
-import { Instagram, X } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { Instagram, X, ChevronLeft, ChevronRight } from "lucide-react";
 
-// Medien aus public/img/art/ – unterschiedliche Proportionen für Masonry
 const ART_ITEMS = [
   { id: 1, type: "image" as const, src: "/img/art/1.jpg", label: "Reel: Transformation 30kg", w: 1080, h: 1066 },
   { id: 2, type: "video" as const, src: "/img/art/2.mp4", label: "Short: Balayage Prozess", w: 9, h: 16 },
@@ -18,105 +16,171 @@ const ART_ITEMS = [
   { id: 9, type: "video" as const, src: "/img/art/9.mp4", label: "Styling Showcase", w: 9, h: 16 },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      delay: i * 0.06,
-      ease: [0.25, 0.46, 0.45, 0.94] as const,
-    },
-  }),
+// Sichtbare Karten pro Seite je nach Breakpoint
+const getVisibleCount = () => {
+  if (typeof window === "undefined") return 4;
+  if (window.innerWidth < 640) return 1;
+  if (window.innerWidth < 1024) return 2;
+  return 4;
 };
 
 export default function KreationenSection() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(true);
-  const masonryRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(masonryRef, { once: true, margin: "-50px", amount: 0.1 });
+  const [page, setPage] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(4);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const totalPages = Math.ceil(ART_ITEMS.length / visibleCount);
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    setIsMobile(mq.matches);
-    const listener = () => setIsMobile(mq.matches);
-    mq.addEventListener("change", listener);
-    return () => mq.removeEventListener("change", listener);
+    const update = () => setVisibleCount(getVisibleCount());
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
+  const goToPage = useCallback((p: number) => {
+    const clamped = ((p % totalPages) + totalPages) % totalPages;
+    const track = trackRef.current;
+    if (track) {
+      track.scrollTo({ left: clamped * track.clientWidth, behavior: "smooth" });
+    }
+    setPage(clamped);
+  }, [totalPages]);
+
+  // Auto-play seitenweise
+  useEffect(() => {
+    autoPlayRef.current = setInterval(() => {
+      setPage((prev) => {
+        const next = (prev + 1) % totalPages;
+        const track = trackRef.current;
+        if (track) track.scrollTo({ left: next * track.clientWidth, behavior: "smooth" });
+        return next;
+      });
+    }, 4000);
+    return () => { if (autoPlayRef.current) clearInterval(autoPlayRef.current); };
+  }, [totalPages]);
+
+  const pauseAutoPlay = () => { if (autoPlayRef.current) clearInterval(autoPlayRef.current); };
+
   const openLightbox = (index: number) => {
+    pauseAutoPlay();
     setLightboxIndex(index);
     setLightboxOpen(true);
   };
 
   const selectedItem = ART_ITEMS[lightboxIndex];
 
+  // Karten-Breite: exakt 1/visibleCount des Containers minus Lücken
+  const GAP = 24; // px – entspricht gap-6
+  const cardStyle = {
+    flex: `0 0 calc(${100 / visibleCount}% - ${(GAP * (visibleCount - 1)) / visibleCount}px)`,
+  };
+
   return (
-    <section className="relative py-24 px-6 lg:px-8 overflow-hidden bg-[#0a0a0a]">
-      {/* Subtiles Grain-Overlay */}
+    <section className="relative pt-36 pb-16 overflow-hidden bg-[#0a0a0a]">
+      {/* Grain-Overlay */}
       <div
         className="pointer-events-none absolute inset-0 z-0 opacity-[0.025] mix-blend-overlay"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         }}
       />
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <h2 className="font-serif text-4xl md:text-5xl text-white text-center mb-14 font-medium">
-          Unsere Kreationen
-        </h2>
 
-        {/* Lückenloses Masonry-Layout */}
-        <div
-          ref={masonryRef}
-          className="columns-2 md:columns-3 gap-4 md:gap-6 mb-14"
-        >
-          {ART_ITEMS.map((item, index) => (
-            <motion.button
-              key={item.id}
-              custom={index}
-              variants={cardVariants}
-              initial="hidden"
-              animate={isMobile ? "visible" : isInView ? "visible" : "hidden"}
-              transition={isMobile ? { duration: 0, delay: 0 } : undefined}
-              onClick={() => openLightbox(index)}
-              className="group block w-full break-inside-avoid mb-6 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2 focus:ring-offset-[#0a0a0a] focus:rounded-3xl text-left"
-            >
-              <div className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-white/5 bg-[#0f0f0f] shadow-[0_4px_24px_rgba(0,0,0,0.4)] transition-all duration-300 ease-out hover:border-[#D4AF37]/60 hover:shadow-[0_8px_32px_rgba(212,175,55,0.08)] hover:brightness-105">
+      <div className="relative z-10">
+        {/* Header */}
+        <div className="flex items-center justify-center px-6 lg:px-8 max-w-7xl mx-auto mb-28">
+          <h2 className="font-serif text-5xl md:text-6xl text-white font-medium text-center">
+            Unsere Kreationen
+          </h2>
+        </div>
+
+        {/* Slider mit seitlichen Pfeilen */}
+        <div className="relative">
+          {/* Pfeil links */}
+          <button
+            onClick={() => { pauseAutoPlay(); goToPage(page - 1); }}
+            aria-label="Vorherige Seite"
+            className="absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gold flex items-center justify-center text-black shadow-xl hover:bg-gold/85 transition-all duration-300"
+          >
+            <ChevronLeft className="w-5 h-5" strokeWidth={2.5} />
+          </button>
+          {/* Pfeil rechts */}
+          <button
+            onClick={() => { pauseAutoPlay(); goToPage(page + 1); }}
+            aria-label="Nächste Seite"
+            className="absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gold flex items-center justify-center text-black shadow-xl hover:bg-gold/85 transition-all duration-300"
+          >
+            <ChevronRight className="w-5 h-5" strokeWidth={2.5} />
+          </button>
+
+        {/* Slider – overflow versteckt, kein manuelles Scrollen */}
+        <div className="overflow-hidden px-20 lg:px-24">
+          <div
+            ref={trackRef}
+            className="flex gap-6 overflow-x-auto"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none", pointerEvents: "none" }}
+            onMouseEnter={pauseAutoPlay}
+          >
+            {ART_ITEMS.map((item, index) => (
+              <button
+                key={item.id}
+                data-slide={index}
+                onClick={() => openLightbox(index)}
+                style={{ ...cardStyle, pointerEvents: "auto" }}
+                className="group flex-shrink-0 rounded-2xl md:rounded-3xl overflow-hidden border border-white/5 bg-[#0f0f0f] shadow-[0_4px_24px_rgba(0,0,0,0.4)] hover:border-gold/40 hover:shadow-[0_8px_32px_rgba(212,175,55,0.08)] transition-all duration-300 focus:outline-none cursor-pointer"
+              >
                 {item.type === "image" ? (
-                  <div className="relative w-full overflow-hidden rounded-2xl md:rounded-3xl">
+                  <div className="relative w-full aspect-[3/4]">
                     <Image
                       src={item.src}
                       alt={item.label}
-                      width={item.w}
-                      height={item.h}
-                      className="w-full h-auto object-cover"
-                      sizes="(max-width: 768px) 50vw, 33vw"
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                   </div>
                 ) : (
-                  <div className="relative w-full aspect-[9/16] overflow-hidden rounded-2xl md:rounded-3xl">
+                  <div className="relative w-full aspect-[9/16]">
                     <video
                       src={item.src}
                       muted
                       loop
                       playsInline
                       autoPlay
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                     />
                   </div>
                 )}
                 <span className="sr-only">{item.label}</span>
-              </div>
-            </motion.button>
+              </button>
+            ))}
+          </div>
+        </div>
+        </div>
+
+        {/* Seiten-Indikatoren */}
+        <div className="flex justify-center gap-1.5 mt-6 px-6">
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { pauseAutoPlay(); goToPage(i); }}
+              aria-label={`Seite ${i + 1}`}
+              className={`rounded-full transition-all duration-300 ${
+                page === i
+                  ? "w-5 h-1.5 bg-gold"
+                  : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
+              }`}
+            />
           ))}
         </div>
 
-        {/* CTA – zentriert */}
-        <div className="w-full flex justify-center items-center mt-14">
+        {/* CTA */}
+        <div className="w-full flex justify-center items-center mt-10 px-6">
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/selinscharisma"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 hover:border-gold/40 transition-all duration-300"
@@ -127,10 +191,10 @@ export default function KreationenSection() {
         </div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox */}
       {lightboxOpen && selectedItem && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/92"
           onClick={() => setLightboxOpen(false)}
         >
           <button
@@ -140,8 +204,22 @@ export default function KreationenSection() {
           >
             <X className="w-6 h-6" strokeWidth={1.5} />
           </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex - 1 + ART_ITEMS.length) % ART_ITEMS.length); }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-colors z-10"
+            aria-label="Vorheriges"
+          >
+            <ChevronLeft className="w-7 h-7" strokeWidth={1.5} />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % ART_ITEMS.length); }}
+            className="absolute right-12 top-1/2 -translate-y-1/2 p-2 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-colors z-10"
+            aria-label="Nächstes"
+          >
+            <ChevronRight className="w-7 h-7" strokeWidth={1.5} />
+          </button>
           <div
-            className="relative w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-hidden bg-black"
+            className="relative w-full max-w-xl max-h-[90vh] rounded-3xl overflow-hidden bg-black"
             style={{
               aspectRatio:
                 selectedItem.type === "video"

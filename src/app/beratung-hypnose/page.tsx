@@ -48,7 +48,7 @@ export default function BeratungHypnosePage() {
       };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f]">
+    <div className="min-h-screen bg-[#f5f0e8] text-[#1d1d1f]">
       {/* Hero */}
       <section className="pt-36 pb-36 lg:pb-48 px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">

@@ -25,10 +25,10 @@ export default function Navbar() {
   const isLightPage = pathname === "/beratung-hypnose";
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-colors duration-300 ${
-      isLightPage ? "bg-[#f5f5f7]/90 border-b border-[#1d1d1f]/10" : "bg-white/5 border-b border-white/10"
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+      isLightPage ? "bg-[#f5f5f7]/95 backdrop-blur-md border-b border-[#1d1d1f]/10" : "bg-black border-b border-white/5"
     }`}>
-      <nav className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
+      <nav className="w-full px-6 lg:px-14 xl:px-20 py-4 flex items-center justify-between">
         <Link
           href="/"
           className={`flex items-center gap-3 hover:opacity-90 transition-all duration-500 ease-in-out ${
@@ -69,12 +69,14 @@ export default function Navbar() {
           </ul>
           <a
             href="tel:+496201871966"
-            className={`inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-gold/60 text-gold rounded-2xl transition-all duration-500 ease-in-out ${
-              isLightPage ? "hover:bg-gold/15" : "hover:bg-gold/10"
+            className={`inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl transition-all duration-500 ease-in-out ${
+              isLightPage
+                ? "border border-gold/60 text-gold hover:bg-gold/15"
+                : "bg-gold text-black border border-gold hover:bg-gold/90"
             }`}
           >
             <Phone className="w-4 h-4" strokeWidth={1.5} />
-            Jetzt anrufen
+            {isLightPage ? "Jetzt anrufen" : "Jetzt buchen"}
           </a>
         </div>
 
@@ -90,10 +92,10 @@ export default function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div className={`md:hidden backdrop-blur-md rounded-b-2xl overflow-hidden ${
-          isLightPage ? "bg-[#f5f5f7]/98 border-t border-[#1d1d1f]/10" : "bg-apple-dark/95 border-t border-white/10"
+        <div className={`md:hidden rounded-b-2xl overflow-hidden ${
+          isLightPage ? "bg-[#f5f5f7]/98 backdrop-blur-md border-t border-[#1d1d1f]/10" : "bg-black border-t border-white/10"
         }`}>
-          <ul className="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-1">
+          <ul className="px-6 py-6 flex flex-col gap-1">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
@@ -110,11 +112,15 @@ export default function Navbar() {
             <li className="pt-2">
               <a
                 href="tel:+496201871966"
-                className="flex items-center gap-2 py-3 px-4 border border-gold/60 text-gold rounded-2xl hover:bg-gold/10 transition-all duration-500"
+                className={`flex items-center gap-2 py-3 px-4 rounded-xl font-semibold transition-all duration-500 ${
+                  isLightPage
+                    ? "border border-gold/60 text-gold hover:bg-gold/10"
+                    : "bg-gold text-black hover:bg-gold/90"
+                }`}
                 onClick={() => setMobileOpen(false)}
               >
                 <Phone className="w-4 h-4" />
-                Jetzt anrufen
+                {isLightPage ? "Jetzt anrufen" : "Jetzt buchen"}
               </a>
             </li>
           </ul>
