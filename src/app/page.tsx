@@ -23,7 +23,7 @@ const GALLERY_IMAGES = [
 ];
 const LEISTUNGEN_DAMEN_IMAGE = "/img/leistungen-damen.png";
 const LEISTUNGEN_HERREN_IMAGE = "/img/leistung-herren.jpeg";
-const LEISTUNGEN_KOSMETIK_IMAGE = "/img/leistungen-kosmetik.png";
+const LEISTUNGEN_KOSMETIK_IMAGE = "/img/leistung-kosmetik.jpeg";
 
 export default function HomePage() {
   return (
