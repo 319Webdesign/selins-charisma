@@ -22,7 +22,6 @@ const PREISE: Record<string, { items: PreisItem[]; subtitle?: string }> = {
     ],
   },
   herren: {
-    subtitle: "Alle Leistungen inkl. Haar- & Kopfmassage",
     items: [
       { name: "Trockenhaarschnitt", preis: "ab 23,–" },
       { name: "Waschen, Schneiden", preis: "ab 25,–" },
@@ -89,75 +88,139 @@ function PreiseContent() {
   const { items, subtitle } = PREISE[activeTab];
 
   return (
-    <div className="pt-40 pb-24 px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="font-serif text-5xl md:text-5xl lg:text-6xl text-white text-center font-medium tracking-tight mb-4">
-          Preise
-        </h1>
-        <p className="text-white/60 text-center mb-16 max-w-xl mx-auto">
-          Transparente Preise für Damen, Herren, Kinder & Kosmetik
-        </p>
-
-        {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {TABS.map(({ key, label }) => (
-            <button
-              key={key}
-              onClick={() => handleTabClick(key)}
-              className={`px-6 py-3 rounded-2xl text-sm font-medium transition-all duration-500 ease-in-out ${
-                activeTab === key
-                  ? "bg-white/10 text-gold border border-gold/50"
-                  : "bg-transparent text-white/70 border border-white/20 hover:text-white hover:border-white/40"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-
-        {/* Subtitle z. B. für Herren */}
-        {subtitle && (
-          <p className="text-white/70 text-center text-sm mb-6 max-w-2xl mx-auto">
-            {subtitle}
+    <>
+      {/* Header + Preisliste */}
+      <div className="bg-bento pt-40 pb-24 px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="font-serif text-5xl md:text-5xl lg:text-6xl text-white text-center font-medium tracking-tight mb-4">
+            Preise
+          </h1>
+          <p className="text-white/60 text-center mb-16 max-w-xl mx-auto">
+            Transparente Preise für Damen, Herren, Kinder & Kosmetik
           </p>
-        )}
 
-        {/* Preisliste – Bento-Box */}
-        <FadeInUp>
-        <div className="max-w-2xl mx-auto bg-bento border border-white/5 rounded-3xl p-8 md:p-12">
-          <ul className="space-y-0">
-            {items.map((item, idx) => (
-              <motion.li
-                key={item.name}
-                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-20px" }}
-                transition={isMobile ? { duration: 0 } : { duration: 0.5, delay: idx * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="flex justify-between items-baseline gap-4 py-5 border-b border-gold/20 last:border-0"
+          {/* Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 mb-12">
+            {TABS.map(({ key, label }) => (
+              <button
+                key={key}
+                onClick={() => handleTabClick(key)}
+                className={`px-6 py-3 rounded-2xl text-sm font-medium transition-all duration-500 ease-in-out ${
+                  activeTab === key
+                    ? "bg-white/10 text-gold border border-gold/50"
+                    : "bg-transparent text-white/70 border border-white/20 hover:text-white hover:border-white/40"
+                }`}
               >
-                <div className="min-w-0">
-                  <span className="text-white/90 font-medium">{item.name}</span>
-                  {item.detail && (
-                    <p className="text-white/55 text-sm mt-0.5">{item.detail}</p>
-                  )}
-                </div>
-                <span className="text-gold text-sm font-medium tabular-nums flex-shrink-0">
-                  {item.preis}
-                </span>
-              </motion.li>
+                {label}
+              </button>
             ))}
-          </ul>
+          </div>
+
+          {/* Subtitle z. B. für Herren */}
+          {subtitle && (
+            <p className="text-white/70 text-center text-sm mb-6 max-w-2xl mx-auto">
+              {subtitle}
+            </p>
+          )}
+
+          {/* Preisliste – Bento-Box */}
+          <FadeInUp>
+            <div className="max-w-3xl mx-auto bg-bento border border-gold/40 rounded-3xl p-8 md:p-12">
+              <ul className="space-y-0">
+                {items.map((item, idx) => (
+                  <motion.li
+                    key={item.name}
+                    initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-20px" }}
+                    transition={isMobile ? { duration: 0 } : { duration: 0.5, delay: idx * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="flex justify-between items-baseline gap-4 py-5 border-b border-gold/20 last:border-0"
+                  >
+                    <div className="min-w-0">
+                      <span className="text-white/90 font-medium">{item.name}</span>
+                      {item.detail && (
+                        <p className="text-white/55 text-sm mt-0.5">{item.detail}</p>
+                      )}
+                    </div>
+                    <span className="text-gold text-sm font-medium tabular-nums flex-shrink-0">
+                      {item.preis}
+                    </span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </FadeInUp>
+
         </div>
-        </FadeInUp>
+      </div>
 
-        <p className="text-white/50 text-sm text-center mt-12 max-w-md mx-auto">
-          Preise verstehen sich als Richtwerte. Genaue Kosten erfahren Sie bei der Beratung.
-        </p>
+      {/* Abschnitt 1 – Mehr als nur ein Haarschnitt */}
+      <FadeInUp delay={0.1}>
+        <div className="bg-bento border-t border-white/5 px-6 lg:px-8 py-16 md:py-20">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="font-serif text-2xl md:text-3xl text-white font-medium mb-5 leading-snug">
+              Mehr als nur ein Haarschnitt –<br className="hidden sm:block" /> Ihr Charisma im Fokus
+            </h2>
+            <p className="text-white/65 leading-relaxed max-w-3xl">
+              Bei Selin&rsquo;s Charisma in Weinheim verstehen wir Ihr Haar als Ausdruck Ihrer Persönlichkeit. Unsere Stylisten kombinieren handwerkliche Präzision mit einer individuellen Typberatung, um einen Look zu kreieren, der nicht nur Trends folgt, sondern Ihre natürliche Schönheit unterstreicht. Wir nehmen uns die Zeit, die Ihr Haar benötigt – für ein Ergebnis, das auch Wochen nach dem Termin noch perfekt sitzt.
+            </p>
+          </div>
+        </div>
+      </FadeInUp>
 
-        {/* CTA – Termin per Telefon (Bento-Box) */}
-        <FadeInUp delay={0.2}>
-        <div className="mt-20 max-w-2xl mx-auto text-center">
-          <div className="rounded-3xl border border-white/5 bg-bento p-8 md:p-12">
+      {/* Abschnitt 2 – Produktqualität */}
+      <FadeInUp delay={0.1}>
+        <div className="bg-bento border-t border-white/5 px-6 lg:px-8 py-16 md:py-20">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="font-serif text-2xl md:text-3xl text-white font-medium mb-5 leading-snug">
+              Qualität, die man fühlt: Unsere Produktauswahl
+            </h2>
+            <p className="text-white/65 leading-relaxed max-w-3xl">
+              Für Ihre Haare ist uns nur das Beste gut genug. In unserem Salon in Weinheim verwenden wir ausschließlich hochwertige, professionelle Pflege- und Stylingprodukte. Diese garantieren nicht nur eine brillante Farbkraft bei Colorationen und Balayage, sondern schützen und kräftigen die Haarstruktur nachhaltig. Erleben Sie den Unterschied einer exklusiven Pflege, die genau auf Ihre Bedürfnisse abgestimmt ist.
+            </p>
+          </div>
+        </div>
+      </FadeInUp>
+
+      {/* Abschnitt 3 – FAQ */}
+      <FadeInUp delay={0.1}>
+        <div className="bg-bento border-t border-white/5 px-6 lg:px-8 py-16 md:py-20">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="font-serif text-2xl md:text-3xl text-white font-medium mb-10 leading-snug">
+              Häufig gestellte Fragen zu unseren Services in Weinheim
+            </h2>
+            <ul className="space-y-0 max-w-3xl">
+              {[
+                {
+                  q: "Wie finde ich den passenden Look für mich?",
+                  a: "Jeder Termin beginnt mit einer ausführlichen Beratung. Wir analysieren Ihre Haarstruktur und Gesichtsform, um gemeinsam den Schnitt oder die Farbe zu finden, die Ihre Ausstrahlung optimal zur Geltung bringt.",
+                },
+                {
+                  q: "Bieten Sie auch Termine für aufwendige Colorationen wie Balayage an?",
+                  a: "Ja, wir sind spezialisiert auf moderne Farbtechniken. Da diese Behandlungen zeitintensiv sind, empfehlen wir eine frühzeitige Reservierung, um uns voll und ganz auf Ihre Transformation konzentrieren zu können.",
+                },
+                {
+                  q: "Kann ich Friseur-Besuche mit einer Hypnose-Sitzung kombinieren?",
+                  a: "Absolut. Unser einzigartiges Konzept in Weinheim erlaubt es Ihnen, äußere Schönheit und inneres Wohlbefinden zu verbinden. Sprechen Sie uns bei der Buchung einfach auf ein kombiniertes Wellness-Erlebnis an.",
+                },
+              ].map((item) => (
+                <li
+                  key={item.q}
+                  className="py-6 border-b border-gold/20 last:border-0 last:pb-0 first:pt-0"
+                >
+                  <p className="text-white/90 font-medium mb-2">{item.q}</p>
+                  <p className="text-white/60 leading-relaxed text-sm">{item.a}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </FadeInUp>
+
+      {/* CTA – Termin per Telefon */}
+      <FadeInUp delay={0.1}>
+        <div className="bg-bento border-t border-white/5 px-6 lg:px-8 py-24">
+          <div className="max-w-2xl mx-auto text-center">
             <h2 className="font-serif text-3xl md:text-3xl text-white font-medium mb-3">
               Termin vereinbaren
             </h2>
@@ -173,9 +236,8 @@ function PreiseContent() {
             </a>
           </div>
         </div>
-        </FadeInUp>
-      </div>
-    </div>
+      </FadeInUp>
+    </>
   );
 }
 

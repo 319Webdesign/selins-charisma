@@ -31,7 +31,7 @@ export default function Navbar() {
       <nav className="w-full px-6 lg:px-14 xl:px-20 py-4 flex items-center justify-between">
         <Link
           href="/"
-          className={`flex items-center gap-3 hover:opacity-90 transition-all duration-500 ease-in-out ${
+          className={`flex items-center gap-3 hover:opacity-90 transition-all duration-500 ease-in-out flex-1 ${
             isLightPage ? "text-[#1d1d1f]" : "text-white"
           }`}
           aria-label="Selin's Charisma Friseur Weinheim – Startseite"
@@ -48,25 +48,26 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-10">
-          <ul className="flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`text-sm font-medium tracking-wide transition-all duration-500 ease-in-out relative after:absolute after:bottom-[-4px] after:left-0 after:h-px after:bg-gold after:transition-all duration-500 ${
-                    pathname === link.href
-                      ? "text-gold after:w-full"
-                      : isLightPage
-                        ? "text-[#1d1d1f]/80 hover:text-[#1d1d1f] after:w-0 hover:after:w-full"
-                        : "text-white/90 hover:text-white after:w-0 hover:after:w-full"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <ul className="hidden md:flex items-center gap-8 flex-1 justify-center">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className={`text-sm font-medium tracking-wide transition-all duration-500 ease-in-out relative after:absolute after:bottom-[-4px] after:left-0 after:h-px after:bg-gold after:transition-all duration-500 ${
+                  pathname === link.href
+                    ? "text-gold after:w-full"
+                    : isLightPage
+                      ? "text-[#1d1d1f]/80 hover:text-[#1d1d1f] after:w-0 hover:after:w-full"
+                      : "text-white/90 hover:text-white after:w-0 hover:after:w-full"
+                }`}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <div className="hidden md:flex flex-1 justify-end">
           <a
             href="tel:+496201871966"
             className={`inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl transition-all duration-500 ease-in-out ${
