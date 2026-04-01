@@ -81,8 +81,21 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 text-center text-white/50 text-sm">
-          <span>© {new Date().getFullYear()} Selin&apos;s Charisma. Alle Rechte vorbehalten.</span>
+        <div className="mt-12 pt-8 border-t border-white/10 text-center text-white/50 text-sm space-y-2">
+          <div>
+            <span>© {new Date().getFullYear()} Selin&apos;s Charisma. Alle Rechte vorbehalten.</span>
+          </div>
+          <div>
+            <span>designed by </span>
+            <a
+              href="https://www.319webdesign.de/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/60 hover:text-gold transition-all duration-500"
+            >
+              319Webdesign
+            </a>
+          </div>
         </div>
       </div>
     </footer>
