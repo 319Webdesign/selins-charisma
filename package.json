@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "video:webm": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/convert-to-webm.ps1"
   },
   "dependencies": {
     "framer-motion": "^12.35.0",
