@@ -66,6 +66,7 @@ export default function BeratungHypnosePage() {
                   className="absolute inset-0 h-full w-full object-cover"
                 >
                   <source src="/video/video_08.webm" type="video/webm" />
+                  <source src="/video/video_08.mp4" type="video/mp4" />
                   Ihr Browser unterstützt das Video-Format nicht.
                 </video>
               </div>
@@ -280,6 +281,7 @@ export default function BeratungHypnosePage() {
                 className="absolute inset-0 h-full w-full object-cover"
               >
                 <source src="/video/video_02.webm" type="video/webm" />
+                <source src="/video/video_02.mp4" type="video/mp4" />
                 Ihr Browser unterstützt das Video-Format nicht.
               </video>
             </div>

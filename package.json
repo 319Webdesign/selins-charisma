@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "video:webm": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/convert-to-webm.ps1"
+    "video:webm": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/convert-to-webm.ps1",
+    "video:safari-mp4": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/encode-safari-mp4.ps1"
   },
   "dependencies": {
     "framer-motion": "^12.35.0",
