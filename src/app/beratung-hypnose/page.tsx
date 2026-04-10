@@ -92,9 +92,9 @@ export default function BeratungHypnosePage() {
             <motion.article
               {...fadeInUp}
               transition={{ ...fadeInUp.transition, delay: 0.08 }}
-              className="bg-white max-lg:w-full max-lg:rounded-none max-lg:border-x-0 max-lg:border-y max-lg:border-black/5 max-lg:shadow-none lg:rounded-3xl lg:border lg:border-black/5 lg:shadow-[0_16px_46px_rgba(0,0,0,0.08)] px-5 py-8 sm:px-8 md:p-10 flex flex-col justify-center"
+              className="bg-white max-lg:w-full max-lg:rounded-none max-lg:border-x-0 max-lg:border-y max-lg:border-black/5 max-lg:shadow-none lg:rounded-3xl lg:border lg:border-black/5 lg:shadow-[0_16px_46px_rgba(0,0,0,0.08)] px-5 py-8 sm:px-8 md:p-10 flex flex-col justify-center max-lg:items-center"
             >
-              <div className="space-y-5 text-[#0A0A0A]/85 leading-relaxed text-base md:text-lg">
+              <div className="space-y-5 text-[#0A0A0A]/85 leading-relaxed text-base md:text-lg max-lg:text-center max-lg:max-w-2xl">
                 <p>
                   Mein Name ist Yasemin und ich begleite Menschen als Berater mit Hypnose auf ihrem Weg zu
                   mehr Wohlbefinden und innerer Balance.
@@ -153,7 +153,7 @@ export default function BeratungHypnosePage() {
             transition={{ ...fadeInUp.transition, delay: 0.08 }}
             className="rounded-3xl bg-white border border-black/5 p-8 md:p-10 shadow-[0_16px_46px_rgba(0,0,0,0.08)] flex flex-col justify-center"
           >
-            <h2 className="font-serif text-3xl md:text-4xl leading-tight">
+            <h2 className="font-serif text-3xl md:text-4xl leading-tight max-lg:text-center">
               <span className="text-[#D4AF37]">30 Kilo in 3 Monaten</span> – Meine persönliche Reise
             </h2>
             <p className="mt-6 text-[#0A0A0A]/80 leading-relaxed text-base md:text-lg max-lg:text-center">
@@ -161,10 +161,10 @@ export default function BeratungHypnosePage() {
               mit dem Unterbewusstsein. Genau diese Kombination aus Struktur und mentaler Neuausrichtung
               nutze ich heute in meinen Sitzungen.
             </p>
-            <div className="mt-8 max-lg:flex max-lg:justify-center">
+            <div className="mt-8 max-lg:flex max-lg:justify-center max-lg:w-full">
               <Link
                 href="tel:+496201871966"
-                className="inline-flex items-center justify-center rounded-2xl bg-[#D4AF37] px-7 py-3 text-[#0A0A0A] font-medium hover:brightness-95 transition"
+                className="inline-flex max-lg:w-full max-lg:max-w-md items-center justify-center rounded-2xl bg-[#D4AF37] px-7 py-3 text-center text-[#0A0A0A] font-medium hover:brightness-95 transition"
               >
                 Kostenloses Erstgespräch buchen
               </Link>
