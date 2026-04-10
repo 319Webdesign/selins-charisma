@@ -73,18 +73,18 @@ export default function BeratungHypnosePage() {
                       readyState: el.readyState,
                       currentSrc: el.currentSrc,
                     });
-                    console.error("[Hypnose Hero-Video video_08.webm]", dump());
+                    console.error("[Hypnose Hero-Video Video_08.webm]", dump());
                     if (!el.error) {
                       queueMicrotask(() =>
                         console.error(
-                          "[Hypnose Hero-Video video_08.webm] (nach Microtask)",
+                          "[Hypnose Hero-Video Video_08.webm] (nach Microtask)",
                           dump()
                         )
                       );
                     }
                   }}
                 >
-                  <source src="/video/video_08.webm" type="video/webm" />
+                  <source src="/video/Video_08.webm" type="video/webm" />
                 </video>
               </div>
             </motion.div>

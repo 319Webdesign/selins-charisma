@@ -15,7 +15,7 @@ $dir = if ($VideoDir) { $VideoDir } else { Join-Path $PSScriptRoot "..\public\vi
 $dir = Resolve-Path $dir
 
 $inputs = @(
-    @{ In = "video_08.webm"; Out = "video_08.mp4" },
+    @{ In = "Video_08.webm"; Out = "video_08.mp4" },
     @{ In = "video_02.webm"; Out = "video_02.mp4" }
 )
 
