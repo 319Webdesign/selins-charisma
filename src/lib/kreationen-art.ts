@@ -82,7 +82,7 @@ export function buildKreationenRows(): KreationenRow[] {
   const multiItemRows: KreationenRow[] = [];
   const singletonItems: KreationenItem[] = [];
 
-  for (const [sizeBytes, group] of bySize) {
+  bySize.forEach((group, sizeBytes) => {
     group.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
     if (group.length >= 2) {
       const columns: 3 | 4 = group.length >= 4 ? 4 : 3;
@@ -90,7 +90,7 @@ export function buildKreationenRows(): KreationenRow[] {
     } else {
       singletonItems.push(...group);
     }
-  }
+  });
 
   singletonItems.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
 
