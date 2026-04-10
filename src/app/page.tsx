@@ -38,7 +38,7 @@ export default function HomePage() {
             priority
             quality={90}
             placeholder="blur"
-            className="object-cover object-[64%_0%] sm:object-[66%_2%] md:object-[68%_4%] lg:object-[70%_5%] contrast-[1.02]"
+            className="object-cover object-[70%_0%] sm:object-[72%_2%] md:object-[74%_4%] lg:object-[76%_5%] contrast-[1.02]"
             sizes="100vw"
           />
           <div
