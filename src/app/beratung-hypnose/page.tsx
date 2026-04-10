@@ -50,7 +50,7 @@ export default function BeratungHypnosePage() {
             >
               <div className="relative w-full max-lg:aspect-[9/16] max-lg:max-h-[min(88dvh,920px)] lg:aspect-auto lg:max-h-none lg:absolute lg:inset-0 lg:min-h-0">
                 <video
-                  src="/video/Video_08.webm"
+                  src="/video/video_08.webm"
                   autoPlay
                   muted
                   loop
@@ -263,7 +263,7 @@ export default function BeratungHypnosePage() {
           >
             <div className="relative w-full max-lg:aspect-[9/16] max-lg:max-h-[min(88dvh,920px)] lg:aspect-auto lg:max-h-none lg:absolute lg:inset-0 lg:min-h-0">
               <video
-                src="/video/Video_02.mp4"
+                src="/video/video_02.webm"
                 autoPlay
                 muted
                 loop

@@ -112,7 +112,7 @@ export default function HomePage() {
               return (
                 <article
                   key={item.title}
-                  className="bg-[#1e1e1e] p-6 md:p-8 flex flex-col min-h-[260px] md:min-h-[280px]"
+                  className="relative z-0 bg-[#1e1e1e] p-6 md:p-8 flex flex-col min-h-[260px] md:min-h-[280px] origin-center transition-[transform,box-shadow] duration-500 ease-out motion-safe:hover:scale-[1.04] motion-safe:hover:z-10 motion-safe:hover:shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
                 >
                   <div className="flex items-start justify-between gap-4 mb-6">
                     <Icon className="w-6 h-6 text-gold shrink-0" strokeWidth={1.35} aria-hidden />
