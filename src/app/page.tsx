@@ -13,14 +13,6 @@ export const metadata: Metadata = {
     "Selin's Charisma: Ihr Friseursalon in Weinheim. Professionelle Schnitte, Färbung, Balayage. Beratung & Hypnose. Hauptstraße 71, 69469 Weinheim. Jetzt Termin vereinbaren.",
 };
 
-const SALON_IMAGE = "/img/salon-interior.png";
-const GALLERY_IMAGES = [
-  { src: "/img/gallery-1.png", alt: "Selin's Charisma Friseur Weinheim – Salonansicht Hauptstraße" },
-  { src: "/img/gallery-2.png", alt: "Selin's Charisma Friseur Weinheim – Styling-Stationen" },
-  { src: "/img/gallery-3.png", alt: "Selin's Charisma Friseur Weinheim – Waschplätze" },
-  { src: "/img/gallery-4.png", alt: "Selin's Charisma Friseur Weinheim – Salon-Innenansicht" },
-  { src: "/img/gallery-5.png", alt: "Selin's Charisma Friseur Weinheim – Arbeitsbereiche" },
-];
 export default function HomePage() {
   return (
     <>
@@ -227,65 +219,6 @@ export default function HomePage() {
       </section>
 
       <KreationenSection />
-
-      {/* Galerie – Salon in Szene */}
-      <section className="py-24 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="font-serif text-5xl md:text-6xl text-white text-center mb-4 font-medium">
-            Unser Salon
-          </h2>
-          <p className="text-white/60 text-center mb-16 max-w-xl mx-auto">
-            Entdecken Sie die Atmosphäre von Selin&apos;s Charisma
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[160px] md:auto-rows-[200px]">
-            <div className="col-span-2 row-span-2 rounded-2xl overflow-hidden relative group">
-              <Image
-                src={GALLERY_IMAGES[0].src}
-                alt={GALLERY_IMAGES[0].alt}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-            <div className="rounded-2xl overflow-hidden relative group">
-              <Image
-                src={GALLERY_IMAGES[1].src}
-                alt={GALLERY_IMAGES[1].alt}
-                fill
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                sizes="(max-width: 768px) 50vw, 25vw"
-              />
-            </div>
-            <div className="rounded-2xl overflow-hidden relative group">
-              <Image
-                src={GALLERY_IMAGES[2].src}
-                alt={GALLERY_IMAGES[2].alt}
-                fill
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                sizes="(max-width: 768px) 50vw, 25vw"
-              />
-            </div>
-            <div className="rounded-2xl overflow-hidden relative group">
-              <Image
-                src={GALLERY_IMAGES[3].src}
-                alt={GALLERY_IMAGES[3].alt}
-                fill
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                sizes="(max-width: 768px) 50vw, 25vw"
-              />
-            </div>
-            <div className="rounded-2xl overflow-hidden relative group">
-              <Image
-                src={GALLERY_IMAGES[4].src}
-                alt={GALLERY_IMAGES[4].alt}
-                fill
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                sizes="(max-width: 768px) 50vw, 25vw"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Instagram CTA */}
       <section className="bg-[#f5f0e8] py-20 px-6 lg:px-8">
