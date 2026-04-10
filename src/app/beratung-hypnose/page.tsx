@@ -4,7 +4,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Phone } from "lucide-react";
-import { HypnoseWebmVideo } from "@/components/HypnoseWebmVideo";
 
 export default function BeratungHypnosePage() {
   const fadeInUp = {
@@ -57,10 +56,17 @@ export default function BeratungHypnosePage() {
               className="relative overflow-hidden bg-black border-black/5 max-lg:rounded-none max-lg:border-0 max-lg:shadow-md lg:rounded-3xl lg:border lg:shadow-[0_24px_80px_rgba(0,0,0,0.22)] lg:min-h-[320px] lg:h-full"
             >
               <div className="relative w-full max-lg:aspect-[9/16] max-lg:max-h-[min(88dvh,920px)] lg:aspect-auto lg:max-h-none lg:absolute lg:inset-0 lg:min-h-0">
-                <HypnoseWebmVideo
-                  src="/video/video_08.webm"
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="auto"
                   className="absolute inset-0 h-full w-full object-cover"
-                />
+                >
+                  <source src="/video/video_08.webm" type="video/webm" />
+                </video>
               </div>
             </motion.div>
 
@@ -263,10 +269,17 @@ export default function BeratungHypnosePage() {
             className="relative rounded-3xl overflow-hidden bg-black shadow-[0_24px_80px_rgba(0,0,0,0.22)] border border-black/5 lg:h-full lg:min-h-[320px]"
           >
             <div className="relative w-full max-lg:aspect-[9/16] max-lg:max-h-[min(88dvh,920px)] lg:aspect-auto lg:max-h-none lg:absolute lg:inset-0 lg:min-h-0">
-              <HypnoseWebmVideo
-                src="/video/video_02.webm"
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                preload="auto"
                 className="absolute inset-0 h-full w-full object-cover"
-              />
+              >
+                <source src="/video/video_02.webm" type="video/webm" />
+              </video>
             </div>
           </motion.div>
         </div>
