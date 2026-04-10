@@ -28,44 +28,49 @@ const LEISTUNGEN_KOSMETIK_IMAGE = "/img/leistung-kosmetik.jpeg";
 export default function HomePage() {
   return (
     <>
-      {/* Hero – Split-Layout wie Referenz: Text links (Charcoal), Bild rechts */}
-      <section className="relative bg-black overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2 lg:min-h-[min(100dvh,56rem)] pt-24 md:pt-28 lg:pt-24">
-          <div className="order-2 lg:order-1 flex flex-col justify-center px-6 sm:px-10 lg:px-14 xl:pl-20 xl:pr-16 py-14 lg:py-20 bg-charcoal">
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-[2.75rem] xl:text-6xl font-medium tracking-tight leading-[1.15] mb-6 max-w-xl">
-              <span className="text-white">Selin&apos;s Charisma: Ihr exklusiver Friseur in Weinheim für </span>
-              <span className="text-gold">Schönheit</span>
-              <span className="text-white"> &amp; </span>
-              <span className="text-gold">Mentale Stärke</span>
-            </h1>
-            <p className="text-white/85 font-sans text-base sm:text-lg leading-relaxed max-w-xl mb-10">
-              Erleben Sie meisterhaftes Haarstyling und transformative Hypnose an einem Ort. Wir vereinen
-              luxuriöses Wellness-Ambiente mit fachmännischer Expertise für Ihre vollständige Verjüngung in
-              Weinheim.
-            </p>
-            <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-              <a
-                href="tel:+496201871966"
-                className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-gold text-black font-semibold text-sm sm:text-base border border-gold hover:bg-gold/90 transition-all duration-500 ease-in-out"
-              >
-                Termin buchen
-              </a>
-              <GoldButton href="#leistungen" variant="outline" className="px-8 py-3.5 rounded-xl border-gold text-gold font-semibold hover:bg-gold/10">
-                Mehr erfahren
-              </GoldButton>
-            </div>
-          </div>
-          <div className="order-1 lg:order-2 relative w-full overflow-hidden aspect-[3/4] sm:aspect-[3/2] lg:aspect-auto lg:h-full lg:min-h-0">
-            <Image
-              src={heroImage}
-              alt="Selin's Charisma Weinheim – Team und professioneller Auftritt"
-              fill
-              priority
-              quality={90}
-              placeholder="blur"
-              className="object-cover object-[50%_top] lg:object-[50%_10%] contrast-[1.02]"
-              sizes="(max-width: 1024px) 100vw, (max-width: 1920px) 50vw, 960px"
-            />
+      {/* Hero – Vollbild-Hintergrund, Overlay, Text links (Referenz-Layout) */}
+      <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src={heroImage}
+            alt="Selin's Charisma Weinheim – Team und professioneller Auftritt"
+            fill
+            priority
+            quality={90}
+            placeholder="blur"
+            className="object-cover object-[64%_0%] sm:object-[66%_2%] md:object-[68%_4%] lg:object-[70%_5%] contrast-[1.02]"
+            sizes="100vw"
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/35"
+            aria-hidden
+          />
+        </div>
+        <div className="relative z-10 w-full max-w-7xl ml-0 mr-auto pl-4 sm:pl-5 md:pl-6 lg:pl-8 pr-6 sm:pr-8 lg:pr-12 pt-28 pb-20 md:pt-32 md:pb-24">
+          <p className="font-sans text-xs sm:text-sm font-medium tracking-[0.2em] uppercase text-white/90 mb-5 md:mb-6">
+            Willkommen in Weinheim
+          </p>
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[3.25rem] xl:text-7xl font-medium tracking-tight leading-[1.12] mb-6 md:mb-8 max-w-3xl">
+            <span className="text-white">Ihre Ausstrahlung ist unsere </span>
+            <span className="text-gold italic">Leidenschaft.</span>
+          </h1>
+          <p className="text-white/90 font-sans text-base sm:text-lg md:text-xl leading-relaxed max-w-xl mb-10 md:mb-12">
+            Exklusives Haarstyling und persönliche Beratung in luxuriösem Ambiente – für Looks, die zu Ihnen
+            passen, und ein Erlebnis, das Sie spüren.
+          </p>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+            <a
+              href="tel:+496201871966"
+              className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-gold text-black font-semibold text-sm sm:text-base border border-gold hover:bg-gold/90 transition-all duration-500 ease-in-out"
+            >
+              Termin vereinbaren
+            </a>
+            <a
+              href="#leistungen"
+              className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl border border-white/90 text-white font-semibold text-sm sm:text-base bg-transparent hover:bg-white/10 transition-all duration-500 ease-in-out"
+            >
+              Unser Konzept
+            </a>
           </div>
         </div>
       </section>

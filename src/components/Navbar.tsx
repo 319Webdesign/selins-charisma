@@ -8,7 +8,11 @@ import { Menu, X, Phone } from "lucide-react";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [heroNavSolid, setHeroNavSolid] = useState(false);
   const pathname = usePathname();
+
+  const isLightPage = pathname === "/beratung-hypnose";
+  const isHomePage = pathname === "/";
 
   useEffect(() => {
     const handleResize = () => setMobileOpen(false);
@@ -16,23 +20,38 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    if (!isHomePage) {
+      setHeroNavSolid(false);
+      return;
+    }
+    const onScroll = () => setHeroNavSolid(window.scrollY > 48);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHomePage]);
+
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/preise", label: "Preise" },
     { href: "/beratung-hypnose", label: "Beratung & Hypnose" },
   ];
 
-  const isLightPage = pathname === "/beratung-hypnose";
+  const headerSurface = isLightPage
+    ? "bg-[#f5f5f7]/95 backdrop-blur-md border-b border-[#1d1d1f]/10"
+    : isHomePage
+      ? heroNavSolid || mobileOpen
+        ? "bg-black/88 backdrop-blur-md border-b border-white/10"
+        : "bg-black/30 backdrop-blur-sm border-b border-white/10"
+      : "bg-black border-b border-white/5";
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-      isLightPage ? "bg-[#f5f5f7]/95 backdrop-blur-md border-b border-[#1d1d1f]/10" : "bg-black border-b border-white/5"
-    }`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${headerSurface}`}>
       <nav className="w-full px-6 lg:px-14 xl:px-20 py-4 flex items-center justify-between">
         <Link
           href="/"
           className={`flex items-center gap-3 hover:opacity-90 transition-all duration-500 ease-in-out flex-1 ${
-            isLightPage ? "text-[#1d1d1f]" : "text-white"
+            isLightPage ? "text-[#1d1d1f]" : isHomePage ? "text-gold" : "text-white"
           }`}
           aria-label="Selin's Charisma Friseur Weinheim – Startseite"
         >
@@ -41,9 +60,13 @@ export default function Navbar() {
             alt="Selin's Charisma Friseur Weinheim"
             width={64}
             height={64}
-            className="h-16 w-auto object-contain"
+            className={`h-16 w-auto object-contain ${isHomePage ? "brightness-110" : ""}`}
           />
-          <span className="font-serif text-lg font-medium tracking-tight hidden sm:inline">
+          <span
+            className={`font-serif font-medium tracking-tight hidden sm:inline ${
+              isHomePage ? "text-sm uppercase tracking-[0.18em] text-gold" : "text-lg"
+            }`}
+          >
             Selin&apos;s Charisma
           </span>
         </Link>
@@ -55,7 +78,11 @@ export default function Navbar() {
                 href={link.href}
                 className={`text-sm font-medium tracking-wide transition-all duration-500 ease-in-out relative after:absolute after:bottom-[-4px] after:left-0 after:h-px after:bg-gold after:transition-all duration-500 ${
                   pathname === link.href
-                    ? "text-gold after:w-full"
+                    ? isLightPage
+                      ? "text-gold after:w-full"
+                      : isHomePage
+                        ? "text-white after:w-full"
+                        : "text-gold after:w-full"
                     : isLightPage
                       ? "text-[#1d1d1f]/80 hover:text-[#1d1d1f] after:w-0 hover:after:w-full"
                       : "text-white/90 hover:text-white after:w-0 hover:after:w-full"
@@ -77,7 +104,7 @@ export default function Navbar() {
             }`}
           >
             <Phone className="w-4 h-4" strokeWidth={1.5} />
-            {isLightPage ? "Jetzt anrufen" : "Jetzt buchen"}
+            {isLightPage ? "Jetzt anrufen" : isHomePage ? "Termin vereinbaren" : "Jetzt buchen"}
           </a>
         </div>
 
@@ -121,7 +148,7 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
               >
                 <Phone className="w-4 h-4" />
-                {isLightPage ? "Jetzt anrufen" : "Jetzt buchen"}
+                {isLightPage ? "Jetzt anrufen" : isHomePage ? "Termin vereinbaren" : "Jetzt buchen"}
               </a>
             </li>
           </ul>
