@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -84,6 +85,12 @@ export default function RootLayout({
   return (
     <html lang="de" className={`${playfair.variable} ${inter.variable}`}>
       <body className="bg-mesh-anthracite text-white font-sans antialiased min-h-screen flex flex-col relative">
+        <Script
+          id="pianjs"
+          src="https://api.pirsch.io/pa.js"
+          strategy="afterInteractive"
+          data-code="VEfrld5yCm0GlgpRPTksWjDJMgZ6Vnvw"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

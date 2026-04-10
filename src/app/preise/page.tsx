@@ -148,11 +148,11 @@ function PreiseContent() {
             </article>
           </FadeInUp>
 
-          {/* Herren + Bild */}
+          {/* Herren, Kinder & Kosmetik, Bild – Mobil: Bild unter Kosmetik; Desktop: Herren | Bild, darunter 2 Karten */}
           <FadeInUp delay={0.05}>
-            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8 lg:items-stretch">
               <article
-                className={`rounded-2xl md:rounded-3xl bg-[#1A1A1A] border ${ACCENT_BORDER} p-6 sm:p-8 md:p-10 flex flex-col`}
+                className={`rounded-2xl md:rounded-3xl bg-[#1A1A1A] border ${ACCENT_BORDER} p-6 sm:p-8 md:p-10 flex flex-col w-full lg:col-start-1 lg:row-start-1`}
               >
                 <div className="flex items-center gap-3 mb-8 md:mb-10">
                   <span
@@ -170,7 +170,71 @@ function PreiseContent() {
                 </div>
               </article>
 
-              <div className="relative min-h-[280px] lg:min-h-0 lg:aspect-[4/5] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 w-full lg:col-span-2 lg:row-start-2">
+                <article
+                  className={`rounded-2xl md:rounded-3xl bg-[#1A1A1A] border ${ACCENT_BORDER} p-6 sm:p-8 md:p-10 flex flex-col relative overflow-hidden w-full`}
+                >
+                  <Scissors
+                    className="absolute right-4 bottom-4 w-24 h-24 text-white/[0.04]"
+                    strokeWidth={1}
+                    aria-hidden
+                  />
+                  <div className="flex items-center gap-3 mb-3">
+                    <span
+                      className={`inline-flex h-9 w-9 items-center justify-center rounded-full border ${ACCENT_BORDER} ${ACCENT}`}
+                      aria-hidden
+                    >
+                      <Baby className="w-4 h-4" strokeWidth={1.5} />
+                    </span>
+                    <h2 className="font-serif text-xl md:text-2xl font-medium tracking-tight">
+                      Kinder &amp; Teenager
+                    </h2>
+                  </div>
+                  <div className="flex-1 space-y-0 mb-8 mt-2">
+                    {PREISE.kinder.items.map((item) => (
+                      <ServiceRow key={item.name} item={item} />
+                    ))}
+                  </div>
+                  <a
+                    href={TEL_HREF}
+                    className={`mt-auto inline-flex items-center justify-center w-full md:w-auto px-6 py-3 rounded-xl border ${ACCENT_BORDER} text-[#E5D1B8] text-sm font-semibold hover:bg-[#E5D1B8]/10 transition-colors`}
+                  >
+                    Termin anfragen
+                  </a>
+                </article>
+
+                <article
+                  className={`rounded-2xl md:rounded-3xl bg-[#1A1A1A] border ${ACCENT_BORDER} p-6 sm:p-8 md:p-10 flex flex-col relative overflow-hidden w-full`}
+                >
+                  <Sparkles
+                    className="absolute right-4 bottom-4 w-24 h-24 text-white/[0.04]"
+                    strokeWidth={1}
+                    aria-hidden
+                  />
+                  <div className="flex items-center gap-3 mb-6">
+                    <span
+                      className={`inline-flex h-9 w-9 items-center justify-center rounded-full border ${ACCENT_BORDER} ${ACCENT}`}
+                      aria-hidden
+                    >
+                      <Sparkles className="w-4 h-4" strokeWidth={1.5} />
+                    </span>
+                    <h2 className="font-serif text-xl md:text-2xl font-medium tracking-tight">Kosmetik</h2>
+                  </div>
+                  <div className="flex-1 space-y-0 mb-8">
+                    {PREISE.kosmetik.items.map((item) => (
+                      <ServiceRow key={item.name} item={item} />
+                    ))}
+                  </div>
+                  <a
+                    href={TEL_HREF}
+                    className={`mt-auto inline-flex items-center justify-center w-full md:w-auto px-6 py-3 rounded-xl border ${ACCENT_BORDER} text-[#E5D1B8] text-sm font-semibold hover:bg-[#E5D1B8]/10 transition-colors`}
+                  >
+                    Beratung vereinbaren
+                  </a>
+                </article>
+              </div>
+
+              <div className="relative min-h-[300px] sm:min-h-[340px] w-full lg:min-h-0 lg:aspect-[4/5] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 lg:col-start-2 lg:row-start-1">
                 <Image
                   src={MEN_FEATURE_IMAGE}
                   alt="Selin's Charisma Weinheim – Herrenschnitt und professionelles Styling"
@@ -187,73 +251,6 @@ function PreiseContent() {
                   <Phone className="w-5 h-5" strokeWidth={1.75} />
                 </a>
               </div>
-            </div>
-          </FadeInUp>
-
-          {/* Kinder & Kosmetik */}
-          <FadeInUp delay={0.08}>
-            <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-              <article
-                className={`rounded-2xl md:rounded-3xl bg-[#1A1A1A] border ${ACCENT_BORDER} p-6 sm:p-8 md:p-10 flex flex-col relative overflow-hidden`}
-              >
-                <Scissors
-                  className="absolute right-4 bottom-4 w-24 h-24 text-white/[0.04]"
-                  strokeWidth={1}
-                  aria-hidden
-                />
-                <div className="flex items-center gap-3 mb-3">
-                  <span
-                    className={`inline-flex h-9 w-9 items-center justify-center rounded-full border ${ACCENT_BORDER} ${ACCENT}`}
-                    aria-hidden
-                  >
-                    <Baby className="w-4 h-4" strokeWidth={1.5} />
-                  </span>
-                  <h2 className="font-serif text-xl md:text-2xl font-medium tracking-tight">
-                    Kinder &amp; Teenager
-                  </h2>
-                </div>
-                <div className="flex-1 space-y-0 mb-8 mt-2">
-                  {PREISE.kinder.items.map((item) => (
-                    <ServiceRow key={item.name} item={item} />
-                  ))}
-                </div>
-                <a
-                  href={TEL_HREF}
-                  className={`mt-auto inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border ${ACCENT_BORDER} text-[#E5D1B8] text-sm font-semibold hover:bg-[#E5D1B8]/10 transition-colors`}
-                >
-                  Termin anfragen
-                </a>
-              </article>
-
-              <article
-                className={`rounded-2xl md:rounded-3xl bg-[#1A1A1A] border ${ACCENT_BORDER} p-6 sm:p-8 md:p-10 flex flex-col relative overflow-hidden`}
-              >
-                <Sparkles
-                  className="absolute right-4 bottom-4 w-24 h-24 text-white/[0.04]"
-                  strokeWidth={1}
-                  aria-hidden
-                />
-                <div className="flex items-center gap-3 mb-6">
-                  <span
-                    className={`inline-flex h-9 w-9 items-center justify-center rounded-full border ${ACCENT_BORDER} ${ACCENT}`}
-                    aria-hidden
-                  >
-                    <Sparkles className="w-4 h-4" strokeWidth={1.5} />
-                  </span>
-                  <h2 className="font-serif text-xl md:text-2xl font-medium tracking-tight">Kosmetik</h2>
-                </div>
-                <div className="flex-1 space-y-0 mb-8">
-                  {PREISE.kosmetik.items.map((item) => (
-                    <ServiceRow key={item.name} item={item} />
-                  ))}
-                </div>
-                <a
-                  href={TEL_HREF}
-                  className={`mt-auto inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border ${ACCENT_BORDER} text-[#E5D1B8] text-sm font-semibold hover:bg-[#E5D1B8]/10 transition-colors`}
-                >
-                  Beratung vereinbaren
-                </a>
-              </article>
             </div>
           </FadeInUp>
         </div>
@@ -295,11 +292,11 @@ function PreiseContent() {
       {/* Qualität */}
       <FadeInUp delay={0.08}>
         <div className="border-t border-white/[0.06] px-6 lg:px-8 py-16 md:py-20 bg-[#0a0a0a]">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-serif text-2xl md:text-3xl text-white font-medium mb-5 leading-snug">
               Qualität, die man fühlt: Unsere Produktauswahl
             </h2>
-            <p className="text-white/65 leading-relaxed max-w-3xl">
+            <p className="text-white/65 leading-relaxed">
               Für Ihre Haare ist uns nur das Beste gut genug. In unserem Salon in Weinheim verwenden wir
               ausschließlich hochwertige, professionelle Pflege- und Stylingprodukte. Diese garantieren nicht
               nur eine brillante Farbkraft bei Colorationen und Balayage, sondern schützen und kräftigen die
@@ -313,11 +310,11 @@ function PreiseContent() {
       {/* FAQ */}
       <FadeInUp delay={0.1}>
         <div className="border-t border-white/[0.06] px-6 lg:px-8 py-16 md:py-20 bg-black">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-serif text-2xl md:text-3xl text-white font-medium mb-10 leading-snug">
               Häufig gestellte Fragen zu unseren Services in Weinheim
             </h2>
-            <ul className="space-y-0 max-w-3xl">
+            <ul className="space-y-0">
               {[
                 {
                   q: "Wie finde ich den passenden Look für mich?",

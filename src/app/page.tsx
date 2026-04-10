@@ -72,7 +72,7 @@ export default function HomePage() {
       </section>
 
       {/* Haarästhetik – Service-Karten (Referenz-Layout) */}
-      <section id="leistungen" className="py-20 md:py-28 px-6 lg:px-8 bg-[#121212] scroll-mt-24">
+      <section id="leistungen" className="pt-28 pb-28 md:pt-40 md:pb-36 lg:pt-44 lg:pb-44 px-6 lg:px-8 bg-[#121212] scroll-mt-28 md:scroll-mt-32">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-10 mb-12 md:mb-16">
             <div className="max-w-2xl">
@@ -99,21 +99,21 @@ export default function HomePage() {
             {[
               {
                 icon: Scissors,
-                price: "ab 50€",
-                title: "Wash / Cut / Style",
+                price: "ab 25€",
+                title: "Waschen / Schneiden / Stylen",
                 desc: "Inklusive individueller Beratung, Haarwäsche mit Premium-Produkten und exklusivem Styling.",
               },
               {
                 icon: Palette,
-                price: "ab 85€",
+                price: "ab 45€",
                 title: "Coloration & Balayage",
                 desc: "Meisterhafte Farbtechniken für natürliche Reflexe und strahlenden Glanz.",
               },
               {
                 icon: Sparkles,
-                price: "ab 40€",
-                title: "Signature Styling",
-                desc: "Elegante Hochsteckfrisuren oder glamouröse Waves für Ihren besonderen Auftritt.",
+                price: "ab 45€",
+                title: "Kosmetik",
+                desc: "Pflege und Feinheiten fürs Gesicht: Augenbrauen, Wimpern und ausgewählte Beauty-Behandlungen – passend zu Ihrem Look.",
               },
             ].map((item) => {
               const Icon = item.icon;
