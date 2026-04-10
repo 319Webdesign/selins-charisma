@@ -13,6 +13,13 @@ export default function BeratungHypnosePage() {
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
   };
 
+  const revealUp = {
+    initial: { y: 20 },
+    whileInView: { y: 0 },
+    viewport: { once: true, margin: "-80px" },
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
+  };
+
   const heroFade = {
     initial: { opacity: 0, y: 24 },
     animate: { opacity: 1, y: 0 },
@@ -45,19 +52,20 @@ export default function BeratungHypnosePage() {
         <div className="mt-14 lg:px-8">
           <div className="max-lg:max-w-none max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-12 items-stretch">
             <motion.div
-              {...fadeInUp}
+              {...revealUp}
               className="relative overflow-hidden bg-black border-black/5 max-lg:rounded-none max-lg:border-0 max-lg:shadow-md lg:rounded-3xl lg:border lg:shadow-[0_24px_80px_rgba(0,0,0,0.22)] lg:min-h-[320px] lg:h-full"
             >
               <div className="relative w-full max-lg:aspect-[9/16] max-lg:max-h-[min(88dvh,920px)] lg:aspect-auto lg:max-h-none lg:absolute lg:inset-0 lg:min-h-0">
                 <video
-                  src="/video/video_08.webm"
                   autoPlay
                   muted
                   loop
                   playsInline
                   controls
+                  preload="auto"
                   className="absolute inset-0 h-full w-full object-cover"
                 >
+                  <source src="/video/video_08.webm" type="video/webm" />
                   Ihr Browser unterstützt das Video-Format nicht.
                 </video>
               </div>
@@ -257,20 +265,21 @@ export default function BeratungHypnosePage() {
           </motion.aside>
 
           <motion.div
-            {...fadeInUp}
-            transition={{ ...fadeInUp.transition, delay: 0.08 }}
+            {...revealUp}
+            transition={{ ...revealUp.transition, delay: 0.08 }}
             className="relative rounded-3xl overflow-hidden bg-black shadow-[0_24px_80px_rgba(0,0,0,0.22)] border border-black/5 lg:h-full lg:min-h-[320px]"
           >
             <div className="relative w-full max-lg:aspect-[9/16] max-lg:max-h-[min(88dvh,920px)] lg:aspect-auto lg:max-h-none lg:absolute lg:inset-0 lg:min-h-0">
               <video
-                src="/video/video_02.webm"
                 autoPlay
                 muted
                 loop
                 playsInline
                 controls
+                preload="auto"
                 className="absolute inset-0 h-full w-full object-cover"
               >
+                <source src="/video/video_02.webm" type="video/webm" />
                 Ihr Browser unterstützt das Video-Format nicht.
               </video>
             </div>
