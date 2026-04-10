@@ -64,6 +64,16 @@ export default function BeratungHypnosePage() {
                   controls
                   preload="auto"
                   className="absolute inset-0 h-full w-full object-cover"
+                  onError={(e) => {
+                    const el = e.currentTarget;
+                    const err = el.error;
+                    console.error(
+                      "[Hypnose Hero-Video video_08.webm]",
+                      err
+                        ? { code: err.code, message: err.message }
+                        : "unbekannter Fehler"
+                    );
+                  }}
                 >
                   <source src="/video/video_08.webm" type="video/webm" />
                 </video>
