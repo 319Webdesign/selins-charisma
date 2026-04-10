@@ -1,10 +1,15 @@
 "use client";
 
-import { Suspense, useState, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import { Phone } from "lucide-react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { Baby, Phone, Scissors, Sparkles, UserRound } from "lucide-react";
 import { motion } from "framer-motion";
 import FadeInUp from "@/components/FadeInUp";
+
+/** Referenz-Accent (Champagner) – nur auf dieser Seite, Navbar bleibt Gold */
+const ACCENT = "text-[#E5D1B8]";
+const ACCENT_BG = "bg-[#E5D1B8]";
+const ACCENT_BORDER = "border-[#E5D1B8]/35";
 
 type PreisItem = { name: string; preis: string; detail?: string };
 
@@ -52,26 +57,32 @@ const PREISE: Record<string, { items: PreisItem[]; subtitle?: string }> = {
   },
 };
 
-type TabKey = keyof typeof PREISE;
+const TEL_HREF = "tel:+496201871966";
+const TEL_DISPLAY = "+49 6201 871966";
+const MEN_FEATURE_IMAGE = "/img/leistungen-herren.png";
 
-const TABS: { key: TabKey; label: string }[] = [
-  { key: "damen", label: "Damen" },
-  { key: "herren", label: "Herren" },
-  { key: "kinder", label: "Kinder & Teenager" },
-  { key: "kosmetik", label: "Kosmetik" },
-];
+function splitIntoTwoColumns<T>(items: T[]): [T[], T[]] {
+  const mid = Math.ceil(items.length / 2);
+  return [items.slice(0, mid), items.slice(mid)];
+}
 
-const VALID_TABS: TabKey[] = ["damen", "herren", "kinder", "kosmetik"];
-
-function getTabFromUrl(searchParams: URLSearchParams | null): TabKey {
-  const tab = searchParams?.get("tab");
-  return tab && VALID_TABS.includes(tab as TabKey) ? (tab as TabKey) : "damen";
+function ServiceRow({ item }: { item: PreisItem }) {
+  return (
+    <div className="flex justify-between items-start gap-4 py-4 border-b border-white/[0.08] last:border-0">
+      <div className="min-w-0">
+        <p className="text-white/95 font-medium text-sm sm:text-base">{item.name}</p>
+        {item.detail && (
+          <p className="text-white/50 text-xs sm:text-sm mt-1 leading-relaxed">{item.detail}</p>
+        )}
+      </div>
+      <p className={`font-serif text-sm sm:text-base italic tabular-nums flex-shrink-0 ${ACCENT}`}>
+        {item.preis}
+      </p>
+    </div>
+  );
 }
 
 function PreiseContent() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const activeTab = getTabFromUrl(searchParams);
   const [isMobile, setIsMobile] = useState(true);
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 767px)");
@@ -81,110 +92,227 @@ function PreiseContent() {
     return () => mq.removeEventListener("change", listener);
   }, []);
 
-  const handleTabClick = (key: TabKey) => {
-    router.replace(`/preise?tab=${key}`, { scroll: false });
-  };
-
-  const { items, subtitle } = PREISE[activeTab];
+  const damenCols = splitIntoTwoColumns(PREISE.damen.items);
 
   return (
-    <>
-      {/* Header + Preisliste */}
-      <div className="bg-bento pt-40 pb-24 px-6 lg:px-8">
+    <div className="bg-black text-white">
+      {/* Hero */}
+      <section className="pt-36 md:pt-40 pb-16 md:pb-20 px-6 lg:px-8 border-b border-white/[0.06]">
         <div className="max-w-7xl mx-auto">
-          <h1 className="font-serif text-5xl md:text-5xl lg:text-6xl text-white text-center font-medium tracking-tight mb-4">
-            Preise
-          </h1>
-          <p className="text-white/60 text-center mb-16 max-w-xl mx-auto">
-            Transparente Preise für Damen, Herren, Kinder & Kosmetik
+          <p className="font-sans text-[11px] sm:text-xs font-medium tracking-[0.28em] uppercase text-white/55 mb-6">
+            Handwerk im Haar
           </p>
-
-          {/* Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
-            {TABS.map(({ key, label }) => (
-              <button
-                key={key}
-                onClick={() => handleTabClick(key)}
-                className={`px-6 py-3 rounded-2xl text-sm font-medium transition-all duration-500 ease-in-out ${
-                  activeTab === key
-                    ? "bg-white/10 text-gold border border-gold/50"
-                    : "bg-transparent text-white/70 border border-white/20 hover:text-white hover:border-white/40"
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-
-          {/* Subtitle z. B. für Herren */}
-          {subtitle && (
-            <p className="text-white/70 text-center text-sm mb-6 max-w-2xl mx-auto">
-              {subtitle}
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 lg:items-end">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] font-medium tracking-tight leading-[1.08]">
+              Leistungen &amp; Preise
+            </h1>
+            <p className="text-white/60 font-sans text-base sm:text-lg leading-relaxed max-w-xl lg:max-w-none lg:justify-self-end">
+              Transparente Preise für Damen, Herren, Kinder &amp; Kosmetik
             </p>
-          )}
+          </div>
+        </div>
+      </section>
 
-          {/* Preisliste – Bento-Box */}
+      <div className="px-6 lg:px-8 py-14 md:py-20 space-y-10 md:space-y-14">
+        <div className="max-w-7xl mx-auto space-y-10 md:space-y-14">
+          {/* Damen – volle Breite */}
           <FadeInUp>
-            <div className="max-w-3xl mx-auto bg-bento border border-gold/40 rounded-3xl p-8 md:p-12">
-              <ul className="space-y-0">
-                {items.map((item, idx) => (
-                  <motion.li
-                    key={item.name}
-                    initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-20px" }}
-                    transition={isMobile ? { duration: 0 } : { duration: 0.5, delay: idx * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="flex justify-between items-baseline gap-4 py-5 border-b border-gold/20 last:border-0"
+            <article
+              className={`rounded-2xl md:rounded-3xl bg-[#1A1A1A] border ${ACCENT_BORDER} p-6 sm:p-8 md:p-10 lg:p-12 relative overflow-hidden`}
+            >
+              <div
+                className="pointer-events-none absolute -right-16 -top-16 w-48 h-48 rounded-full bg-[#E5D1B8]/[0.04]"
+                aria-hidden
+              />
+              <div className="flex items-center gap-3 mb-8 md:mb-10">
+                <span
+                  className={`inline-flex h-11 w-11 items-center justify-center rounded-full border ${ACCENT_BORDER} ${ACCENT}`}
+                  aria-hidden
+                >
+                  <Sparkles className="w-5 h-5" strokeWidth={1.5} />
+                </span>
+                <h2 className="font-serif text-2xl md:text-3xl font-medium tracking-tight">Damen</h2>
+              </div>
+              <div className="grid md:grid-cols-2 md:gap-x-12 lg:gap-x-16">
+                <div>
+                  {damenCols[0].map((item) => (
+                    <ServiceRow key={item.name} item={item} />
+                  ))}
+                </div>
+                <div>
+                  {damenCols[1].map((item) => (
+                    <ServiceRow key={item.name} item={item} />
+                  ))}
+                </div>
+              </div>
+            </article>
+          </FadeInUp>
+
+          {/* Herren + Bild */}
+          <FadeInUp delay={0.05}>
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+              <article
+                className={`rounded-2xl md:rounded-3xl bg-[#1A1A1A] border ${ACCENT_BORDER} p-6 sm:p-8 md:p-10 flex flex-col`}
+              >
+                <div className="flex items-center gap-3 mb-8 md:mb-10">
+                  <span
+                    className={`inline-flex h-11 w-11 items-center justify-center rounded-full border ${ACCENT_BORDER} ${ACCENT}`}
+                    aria-hidden
                   >
-                    <div className="min-w-0">
-                      <span className="text-white/90 font-medium">{item.name}</span>
-                      {item.detail && (
-                        <p className="text-white/55 text-sm mt-0.5">{item.detail}</p>
-                      )}
-                    </div>
-                    <span className="text-gold text-sm font-medium tabular-nums flex-shrink-0">
-                      {item.preis}
-                    </span>
-                  </motion.li>
-                ))}
-              </ul>
+                    <UserRound className="w-5 h-5" strokeWidth={1.5} />
+                  </span>
+                  <h2 className="font-serif text-2xl md:text-3xl font-medium tracking-tight">Herren</h2>
+                </div>
+                <div className="flex-1">
+                  {PREISE.herren.items.map((item) => (
+                    <ServiceRow key={item.name} item={item} />
+                  ))}
+                </div>
+              </article>
+
+              <div className="relative min-h-[280px] lg:min-h-0 lg:aspect-[4/5] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10">
+                <Image
+                  src={MEN_FEATURE_IMAGE}
+                  alt="Selin's Charisma Weinheim – Herrenschnitt und professionelles Styling"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/40" aria-hidden />
+                <a
+                  href={TEL_HREF}
+                  className={`absolute top-4 right-4 inline-flex h-11 w-11 items-center justify-center rounded-full ${ACCENT_BG} text-black shadow-lg hover:opacity-90 transition-opacity`}
+                  aria-label="Jetzt anrufen"
+                >
+                  <Phone className="w-5 h-5" strokeWidth={1.75} />
+                </a>
+              </div>
             </div>
           </FadeInUp>
 
+          {/* Kinder & Kosmetik */}
+          <FadeInUp delay={0.08}>
+            <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+              <article
+                className={`rounded-2xl md:rounded-3xl bg-[#1A1A1A] border ${ACCENT_BORDER} p-6 sm:p-8 md:p-10 flex flex-col relative overflow-hidden`}
+              >
+                <Scissors
+                  className="absolute right-4 bottom-4 w-24 h-24 text-white/[0.04]"
+                  strokeWidth={1}
+                  aria-hidden
+                />
+                <div className="flex items-center gap-3 mb-3">
+                  <span
+                    className={`inline-flex h-9 w-9 items-center justify-center rounded-full border ${ACCENT_BORDER} ${ACCENT}`}
+                    aria-hidden
+                  >
+                    <Baby className="w-4 h-4" strokeWidth={1.5} />
+                  </span>
+                  <h2 className="font-serif text-xl md:text-2xl font-medium tracking-tight">
+                    Kinder &amp; Teenager
+                  </h2>
+                </div>
+                <div className="flex-1 space-y-0 mb-8 mt-2">
+                  {PREISE.kinder.items.map((item) => (
+                    <ServiceRow key={item.name} item={item} />
+                  ))}
+                </div>
+                <a
+                  href={TEL_HREF}
+                  className={`mt-auto inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border ${ACCENT_BORDER} text-[#E5D1B8] text-sm font-semibold hover:bg-[#E5D1B8]/10 transition-colors`}
+                >
+                  Termin anfragen
+                </a>
+              </article>
+
+              <article
+                className={`rounded-2xl md:rounded-3xl bg-[#1A1A1A] border ${ACCENT_BORDER} p-6 sm:p-8 md:p-10 flex flex-col relative overflow-hidden`}
+              >
+                <Sparkles
+                  className="absolute right-4 bottom-4 w-24 h-24 text-white/[0.04]"
+                  strokeWidth={1}
+                  aria-hidden
+                />
+                <div className="flex items-center gap-3 mb-6">
+                  <span
+                    className={`inline-flex h-9 w-9 items-center justify-center rounded-full border ${ACCENT_BORDER} ${ACCENT}`}
+                    aria-hidden
+                  >
+                    <Sparkles className="w-4 h-4" strokeWidth={1.5} />
+                  </span>
+                  <h2 className="font-serif text-xl md:text-2xl font-medium tracking-tight">Kosmetik</h2>
+                </div>
+                <div className="flex-1 space-y-0 mb-8">
+                  {PREISE.kosmetik.items.map((item) => (
+                    <ServiceRow key={item.name} item={item} />
+                  ))}
+                </div>
+                <a
+                  href={TEL_HREF}
+                  className={`mt-auto inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border ${ACCENT_BORDER} text-[#E5D1B8] text-sm font-semibold hover:bg-[#E5D1B8]/10 transition-colors`}
+                >
+                  Beratung vereinbaren
+                </a>
+              </article>
+            </div>
+          </FadeInUp>
         </div>
       </div>
 
-      {/* Abschnitt 1 – Mehr als nur ein Haarschnitt */}
-      <FadeInUp delay={0.1}>
-        <div className="bg-bento border-t border-white/5 px-6 lg:px-8 py-16 md:py-20">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="font-serif text-2xl md:text-3xl text-white font-medium mb-5 leading-snug">
-              Mehr als nur ein Haarschnitt –<br className="hidden sm:block" /> Ihr Charisma im Fokus
+      {/* Charisma-Erlebnis */}
+      <FadeInUp delay={0.06}>
+        <section className="border-t border-white/[0.06] px-6 lg:px-8 py-16 md:py-24 bg-black">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-serif text-2xl md:text-4xl font-medium mb-5 tracking-tight">
+              Mehr als nur ein Haarschnitt – Ihr Charisma im Fokus
             </h2>
-            <p className="text-white/65 leading-relaxed max-w-3xl">
-              Bei Selin&rsquo;s Charisma in Weinheim verstehen wir Ihr Haar als Ausdruck Ihrer Persönlichkeit. Unsere Stylisten kombinieren handwerkliche Präzision mit einer individuellen Typberatung, um einen Look zu kreieren, der nicht nur Trends folgt, sondern Ihre natürliche Schönheit unterstreicht. Wir nehmen uns die Zeit, die Ihr Haar benötigt – für ein Ergebnis, das auch Wochen nach dem Termin noch perfekt sitzt.
+            <p className="text-white/60 leading-relaxed mb-10 md:mb-12">
+              Bei Selin&apos;s Charisma in Weinheim verstehen wir Ihr Haar als Ausdruck Ihrer Persönlichkeit.
+              Unsere Stylisten kombinieren handwerkliche Präzision mit einer individuellen Typberatung, um
+              einen Look zu kreieren, der nicht nur Trends folgt, sondern Ihre natürliche Schönheit
+              unterstreicht. Wir nehmen uns die Zeit, die Ihr Haar benötigt – für ein Ergebnis, das auch
+              Wochen nach dem Termin noch perfekt sitzt.
             </p>
+            <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-4">
+              <a
+                href={TEL_HREF}
+                className={`inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl ${ACCENT_BG} text-black font-semibold text-sm sm:text-base hover:opacity-90 transition-opacity`}
+              >
+                <Phone className="w-4 h-4" strokeWidth={1.75} />
+                Termin vereinbaren
+              </a>
+              <a
+                href={TEL_HREF}
+                className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl border border-white/80 text-white font-semibold text-sm sm:text-base bg-transparent hover:bg-white/10 transition-colors"
+              >
+                Anrufen: {TEL_DISPLAY}
+              </a>
+            </div>
           </div>
-        </div>
+        </section>
       </FadeInUp>
 
-      {/* Abschnitt 2 – Produktqualität */}
-      <FadeInUp delay={0.1}>
-        <div className="bg-bento border-t border-white/5 px-6 lg:px-8 py-16 md:py-20">
+      {/* Qualität */}
+      <FadeInUp delay={0.08}>
+        <div className="border-t border-white/[0.06] px-6 lg:px-8 py-16 md:py-20 bg-[#0a0a0a]">
           <div className="max-w-7xl mx-auto">
             <h2 className="font-serif text-2xl md:text-3xl text-white font-medium mb-5 leading-snug">
               Qualität, die man fühlt: Unsere Produktauswahl
             </h2>
             <p className="text-white/65 leading-relaxed max-w-3xl">
-              Für Ihre Haare ist uns nur das Beste gut genug. In unserem Salon in Weinheim verwenden wir ausschließlich hochwertige, professionelle Pflege- und Stylingprodukte. Diese garantieren nicht nur eine brillante Farbkraft bei Colorationen und Balayage, sondern schützen und kräftigen die Haarstruktur nachhaltig. Erleben Sie den Unterschied einer exklusiven Pflege, die genau auf Ihre Bedürfnisse abgestimmt ist.
+              Für Ihre Haare ist uns nur das Beste gut genug. In unserem Salon in Weinheim verwenden wir
+              ausschließlich hochwertige, professionelle Pflege- und Stylingprodukte. Diese garantieren nicht
+              nur eine brillante Farbkraft bei Colorationen und Balayage, sondern schützen und kräftigen die
+              Haarstruktur nachhaltig. Erleben Sie den Unterschied einer exklusiven Pflege, die genau auf Ihre
+              Bedürfnisse abgestimmt ist.
             </p>
           </div>
         </div>
       </FadeInUp>
 
-      {/* Abschnitt 3 – FAQ */}
+      {/* FAQ */}
       <FadeInUp delay={0.1}>
-        <div className="bg-bento border-t border-white/5 px-6 lg:px-8 py-16 md:py-20">
+        <div className="border-t border-white/[0.06] px-6 lg:px-8 py-16 md:py-20 bg-black">
           <div className="max-w-7xl mx-auto">
             <h2 className="font-serif text-2xl md:text-3xl text-white font-medium mb-10 leading-snug">
               Häufig gestellte Fragen zu unseren Services in Weinheim
@@ -204,51 +332,28 @@ function PreiseContent() {
                   a: "Absolut. Unser einzigartiges Konzept in Weinheim erlaubt es Ihnen, äußere Schönheit und inneres Wohlbefinden zu verbinden. Sprechen Sie uns bei der Buchung einfach auf ein kombiniertes Wellness-Erlebnis an.",
                 },
               ].map((item) => (
-                <li
+                <motion.li
                   key={item.q}
-                  className="py-6 border-b border-gold/20 last:border-0 last:pb-0 first:pt-0"
+                  initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-20px" }}
+                  transition={
+                    isMobile ? { duration: 0 } : { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }
+                  }
+                  className="py-6 border-b border-[#E5D1B8]/20 last:border-0 last:pb-0 first:pt-0"
                 >
                   <p className="text-white/90 font-medium mb-2">{item.q}</p>
                   <p className="text-white/60 leading-relaxed text-sm">{item.a}</p>
-                </li>
+                </motion.li>
               ))}
             </ul>
           </div>
         </div>
       </FadeInUp>
-
-      {/* CTA – Termin per Telefon */}
-      <FadeInUp delay={0.1}>
-        <div className="bg-bento border-t border-white/5 px-6 lg:px-8 py-24">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="font-serif text-3xl md:text-3xl text-white font-medium mb-3">
-              Termin vereinbaren
-            </h2>
-            <p className="text-white/70 mb-8 max-w-md mx-auto">
-              Rufen Sie uns gerne an – wir beraten Sie persönlich und finden gemeinsam den passenden Termin für Sie.
-            </p>
-            <a
-              href="tel:+496201871966"
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-gold/20 border border-gold/60 text-gold font-medium hover:bg-gold/30 transition-all duration-500 ease-in-out"
-            >
-              <Phone className="w-5 h-5" strokeWidth={1.5} />
-              Jetzt anrufen
-            </a>
-          </div>
-        </div>
-      </FadeInUp>
-    </>
+    </div>
   );
 }
 
 export default function PreisePage() {
-  return (
-    <Suspense fallback={
-      <div className="pt-40 pb-24 px-6 lg:px-8 min-h-[50vh] flex items-center justify-center">
-        <div className="animate-pulse text-white/50">Lädt…</div>
-      </div>
-    }>
-      <PreiseContent />
-    </Suspense>
-  );
+  return <PreiseContent />;
 }

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import heroImage from "../../public/img/hero.jpeg";
-import GoldButton from "@/components/GoldButton";
 import ContactSection from "@/components/ContactSection";
 import KreationenSection from "@/components/KreationenSection";
 import ReviewsSection from "@/components/ReviewsSection";
-import { Instagram } from "lucide-react";
+import { Instagram, Palette, Scissors, Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Friseur Weinheim – Damen, Herren & Kosmetik",
@@ -21,10 +21,6 @@ const GALLERY_IMAGES = [
   { src: "/img/gallery-4.png", alt: "Selin's Charisma Friseur Weinheim – Salon-Innenansicht" },
   { src: "/img/gallery-5.png", alt: "Selin's Charisma Friseur Weinheim – Arbeitsbereiche" },
 ];
-const LEISTUNGEN_DAMEN_IMAGE = "/img/leistungen-damen.png";
-const LEISTUNGEN_HERREN_IMAGE = "/img/leistung-herren.jpeg";
-const LEISTUNGEN_KOSMETIK_IMAGE = "/img/leistung-kosmetik.jpeg";
-
 export default function HomePage() {
   return (
     <>
@@ -75,64 +71,73 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Feature Cards: Damen, Herren, Kosmetik */}
-      <section id="leistungen" className="py-24 px-6 lg:px-8 bg-black/40 scroll-mt-24">
+      {/* Haarästhetik – Service-Karten (Referenz-Layout) */}
+      <section id="leistungen" className="py-20 md:py-28 px-6 lg:px-8 bg-[#121212] scroll-mt-24">
         <div className="max-w-7xl mx-auto">
-          <h2 className="font-serif text-5xl md:text-6xl text-white text-center mb-16 font-medium">
-            Unsere Leistungen
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 lg:gap-12">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-10 mb-12 md:mb-16">
+            <div className="max-w-2xl">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white font-medium mb-4 tracking-tight">
+                Haarästhetik
+              </h2>
+              <p className="text-white/55 font-sans text-base md:text-lg leading-relaxed">
+                Präzision und Kunstfertigkeit für Ihr Haar. Entdecken Sie unsere Auswahl an
+                Premium-Services.
+              </p>
+            </div>
+            <Link
+              href="/preise"
+              className="inline-flex items-center gap-2 text-gold font-sans text-sm font-medium tracking-wide shrink-0 hover:text-gold/85 transition-colors"
+            >
+              Alle Preise ansehen
+              <span aria-hidden className="text-base leading-none">
+                →
+              </span>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8">
             {[
               {
-                title: "Damen",
-                desc: "Schnitt, Färbung, Balayage – für Ihren einzigartigen Look.",
-                label: "Damen Friseur Weinheim – Media Shooting",
-                image: LEISTUNGEN_DAMEN_IMAGE,
+                icon: Scissors,
+                price: "ab 50€",
+                title: "Wash / Cut / Style",
+                desc: "Inklusive individueller Beratung, Haarwäsche mit Premium-Produkten und exklusivem Styling.",
               },
               {
-                title: "Herren",
-                desc: "Klassischer Schnitt oder moderner Stil – professionell und gepflegt.",
-                label: "Herren Friseur Weinheim – Media Shooting",
-                image: LEISTUNGEN_HERREN_IMAGE,
-                preiseTab: "herren",
+                icon: Palette,
+                price: "ab 85€",
+                title: "Coloration & Balayage",
+                desc: "Meisterhafte Farbtechniken für natürliche Reflexe und strahlenden Glanz.",
               },
               {
-                title: "Kosmetik",
-                desc: "Hautpflege, Make-up und Wellness – für Ihr strahlendes Ich.",
-                label: "Kosmetik Weinheim – Media Shooting",
-                image: LEISTUNGEN_KOSMETIK_IMAGE,
-                preiseTab: "kosmetik",
+                icon: Sparkles,
+                price: "ab 40€",
+                title: "Signature Styling",
+                desc: "Elegante Hochsteckfrisuren oder glamouröse Waves für Ihren besonderen Auftritt.",
               },
-            ].map((item) => (
-              <article
-                key={item.title}
-                className="group rounded-3xl overflow-hidden bg-white/5 border border-white/10 hover:border-gold/30 transition-all duration-500 ease-in-out max-w-sm md:max-w-none mx-auto md:mx-0"
-              >
-                <div className="aspect-[4/3] md:aspect-[4/5] overflow-hidden rounded-t-3xl relative">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover rounded-t-3xl"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-                <div className="p-5 md:p-8">
-                  <h3 className="font-serif text-2xl md:text-xl text-white mb-2 font-medium">
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <article
+                  key={item.title}
+                  className="bg-[#1e1e1e] p-6 md:p-8 flex flex-col min-h-[260px] md:min-h-[280px]"
+                >
+                  <div className="flex items-start justify-between gap-4 mb-6">
+                    <Icon className="w-6 h-6 text-gold shrink-0" strokeWidth={1.35} aria-hidden />
+                    <span className="font-serif text-gold text-lg md:text-xl tabular-nums">
+                      {item.price}
+                    </span>
+                  </div>
+                  <h3 className="font-serif text-xl md:text-2xl text-white font-medium mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-white/60 text-sm leading-relaxed mb-6">
+                  <p className="text-white/50 font-sans text-sm leading-relaxed flex-1 mb-8">
                     {item.desc}
                   </p>
-                  <GoldButton
-                    href={item.preiseTab ? `/preise?tab=${item.preiseTab}` : "/preise"}
-                    variant="outline"
-                  >
-                    Mehr erfahren
-                  </GoldButton>
-                </div>
-              </article>
-            ))}
+                  <div className="w-12 h-px bg-gold/90" aria-hidden />
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -9,10 +9,14 @@ import { Menu, X, Phone } from "lucide-react";
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [heroNavSolid, setHeroNavSolid] = useState(false);
+  const [mobileRevealNav, setMobileRevealNav] = useState(false);
   const pathname = usePathname();
 
   const isLightPage = pathname === "/beratung-hypnose";
   const isHomePage = pathname === "/";
+
+  const MOBILE_NAV_SCROLL_PX = 56;
+  const showMobileNavBar = mobileRevealNav || mobileOpen;
 
   useEffect(() => {
     const handleResize = () => setMobileOpen(false);
@@ -21,11 +25,11 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (!isHomePage) {
-      setHeroNavSolid(false);
-      return;
-    }
-    const onScroll = () => setHeroNavSolid(window.scrollY > 48);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setMobileRevealNav(y > MOBILE_NAV_SCROLL_PX);
+      setHeroNavSolid(isHomePage && y > 48);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -46,7 +50,13 @@ export default function Navbar() {
       : "bg-black border-b border-white/5";
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${headerSurface}`}>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out md:translate-y-0 md:opacity-100 md:pointer-events-auto ${
+        showMobileNavBar
+          ? "max-md:translate-y-0 max-md:opacity-100 max-md:pointer-events-auto"
+          : "max-md:pointer-events-none max-md:-translate-y-full max-md:opacity-0"
+      } ${headerSurface}`}
+    >
       <nav className="w-full px-6 lg:px-14 xl:px-20 py-4 flex items-center justify-between">
         <Link
           href="/"
