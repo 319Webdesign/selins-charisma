@@ -66,13 +66,22 @@ export default function BeratungHypnosePage() {
                   className="absolute inset-0 h-full w-full object-cover"
                   onError={(e) => {
                     const el = e.currentTarget;
-                    const err = el.error;
-                    console.error(
-                      "[Hypnose Hero-Video video_08.webm]",
-                      err
-                        ? { code: err.code, message: err.message }
-                        : "unbekannter Fehler"
-                    );
+                    const dump = () => ({
+                      mediaErrorCode: el.error?.code ?? null,
+                      mediaErrorMessage: el.error?.message ?? null,
+                      networkState: el.networkState,
+                      readyState: el.readyState,
+                      currentSrc: el.currentSrc,
+                    });
+                    console.error("[Hypnose Hero-Video video_08.webm]", dump());
+                    if (!el.error) {
+                      queueMicrotask(() =>
+                        console.error(
+                          "[Hypnose Hero-Video video_08.webm] (nach Microtask)",
+                          dump()
+                        )
+                      );
+                    }
                   }}
                 >
                   <source src="/video/video_08.webm" type="video/webm" />
