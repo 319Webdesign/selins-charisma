@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Phone } from "lucide-react";
+import { Instagram, Phone } from "lucide-react";
 
 export default function BeratungHypnosePage() {
   const fadeInUp = {
@@ -35,7 +35,9 @@ export default function BeratungHypnosePage() {
               {...heroFade}
               className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-tight"
             >
-              Ihr Weg zu neuer Leichtigkeit: Hypnose &amp; Mentaltraining in Weinheim
+              Ihr Weg zu neuer Leichtigkeit: Hypnose &amp;{" "}
+              <br className="md:hidden" />
+              Mentaltraining in Weinheim
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -304,6 +306,35 @@ export default function BeratungHypnosePage() {
         </div>
       </section>
 
+      <section className="px-0 lg:px-8 pt-6 pb-4">
+        <motion.div
+          {...fadeInUp}
+          className="w-full max-w-none rounded-none border-y border-black/5 bg-white px-6 py-10 text-center shadow-sm sm:shadow-[0_16px_46px_rgba(0,0,0,0.06)] lg:max-w-2xl lg:mx-auto lg:rounded-3xl lg:border lg:border-black/5 sm:px-8 md:px-10"
+        >
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#D4AF37]/15 text-[#D4AF37] mb-5">
+            <Instagram className="h-6 w-6" strokeWidth={1.75} aria-hidden />
+          </div>
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-[#D4AF37] mb-2">
+            Instagram
+          </p>
+          <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[#0A0A0A] tracking-tight leading-snug">
+            Einblicke in Hypnose &amp; mentale Begleitung
+          </h2>
+          <p className="mt-4 text-[#0A0A0A]/75 leading-relaxed text-base max-w-md mx-auto">
+            Auf Instagram teile ich Impulse, Hintergründe und Momente rund um Hypnose und persönliche
+            Veränderung – gerne vorbeischauen.
+          </p>
+          <a
+            href="https://www.instagram.com/yaseminsilaselin/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-2xl bg-[#D4AF37] px-8 py-3.5 text-[#0A0A0A] font-medium hover:brightness-95 transition shadow-[0_8px_24px_rgba(212,175,55,0.35)]"
+          >
+            <Instagram className="h-5 w-5 shrink-0" strokeWidth={1.75} aria-hidden />
+            @yaseminsilaselin folgen
+          </a>
+        </motion.div>
+      </section>
     </div>
   );
 }

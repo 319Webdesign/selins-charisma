@@ -59,7 +59,7 @@ const PREISE: Record<string, { items: PreisItem[]; subtitle?: string }> = {
 
 const TEL_HREF = "tel:+496201871966";
 const TEL_DISPLAY = "+49 6201 871966";
-const MEN_FEATURE_IMAGE = "/img/leistungen-herren.png";
+const MEN_FEATURE_IMAGE = "/img/leistung-herren.jpeg";
 
 function splitIntoTwoColumns<T>(items: T[]): [T[], T[]] {
   const mid = Math.ceil(items.length / 2);
