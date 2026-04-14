@@ -28,7 +28,7 @@ const PREISE: Record<string, { items: PreisItem[]; subtitle?: string }> = {
   },
   herren: {
     items: [
-      { name: "Trockenhaarschnitt", preis: "ab 23,–" },
+      { name: "Trockenhaarschnitt", preis: "20,–" },
       { name: "Waschen, Schneiden", preis: "ab 25,–" },
       { name: "Waschen, Schneiden, Föhnen", preis: "ab 28,–" },
     ],
@@ -167,6 +167,9 @@ function PreiseContent() {
                   {PREISE.herren.items.map((item) => (
                     <ServiceRow key={item.name} item={item} />
                   ))}
+                  <p className="text-white/45 text-[11px] sm:text-xs tracking-wide mt-5 pt-1">
+                    INKL. Haar- &amp; Kopfmassage
+                  </p>
                 </div>
               </article>
 
