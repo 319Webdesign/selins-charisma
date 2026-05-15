@@ -24,7 +24,7 @@ export default function DatenschutzPage() {
                 <br />
                 Selin&apos;s Charisma
                 <br />
-                [Inhaber/in – Name eintragen]
+                Yasemin Tekmen
                 <br />
                 Hauptstraße 71
                 <br />

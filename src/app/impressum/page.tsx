@@ -21,7 +21,7 @@ export default function ImpressumPage() {
               <p className="mb-2">
                 Selin&apos;s Charisma
                 <br />
-                [Inhaber/in – Name eintragen]
+                Yasemin Tekmen
                 <br />
                 Hauptstraße 71
                 <br />
@@ -68,7 +68,11 @@ export default function ImpressumPage() {
                 Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
               </h2>
               <p>
-                [Name und Anschrift – wie oben eintragen]
+                Yasemin Tekmen
+                <br />
+                Hauptstraße 71
+                <br />
+                69469 Weinheim
               </p>
             </section>
 
