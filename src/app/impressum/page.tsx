@@ -54,13 +54,9 @@ export default function ImpressumPage() {
 
             <section>
               <h2 className="font-serif text-2xl text-white font-medium mb-4 border-b border-gold/30 pb-2">
-                Umsatzsteuer-ID
+                Steuernummer
               </h2>
-              <p>
-                Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:
-                <br />
-                [USt-IdNr. – falls vorhanden eintragen]
-              </p>
+              <p>47010/19137</p>
             </section>
 
             <section>
